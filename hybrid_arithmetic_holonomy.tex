@@ -1,0 +1,2317 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=28mm]{geometry}
+\emergencystretch=2.5em
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{aliascnt}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Hybrid arithmetic holonomy and twenty-two individual p-adic zeta values},
+  pdfauthor={Christopher D. Long}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\newaliascnt{claim}{theorem}
+\newtheorem{claim}[claim]{Claim}
+\aliascntresetthe{claim}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{hypothesis}{theorem}
+\newtheorem{hypothesis}[hypothesis]{Hypothesis}
+\aliascntresetthe{hypothesis}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\newaliascnt{warning}{theorem}
+\newtheorem{warning}[warning]{Warning}
+\aliascntresetthe{warning}
+
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{claim}{Claim}{Claims}
+\crefname{definition}{Definition}{Definitions}
+\crefname{hypothesis}{Hypothesis}{Hypotheses}
+\crefname{remark}{Remark}{Remarks}
+\crefname{warning}{Warning}{Warnings}
+
+\newcommand{\Q}{\mathbf Q}
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\C}{\mathbf C}
+\newcommand{\R}{\mathbf R}
+\newcommand{\F}{\mathbf F}
+\newcommand{\Qp}{\mathbf Q_p}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\lcmop}{\operatorname{lcm}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Fil}{\operatorname{Fil}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\calF}{\mathcal F}
+\newcommand{\calH}{\mathcal H}
+\newcommand{\calK}{\mathcal K}
+\newcommand{\calA}{\mathcal A}
+\newcommand{\calM}{\mathcal M}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\calO}{\mathcal O}
+\newcommand{\calV}{\mathcal V}
+\newcommand{\widehatdeg}{\widehat{\deg}}
+\newcommand{\Energy}{\mathscr H}
+\newcommand{\LambdaAH}{\Lambda}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\positivepart}[1]{\left(#1\right)_{+}}
+\newcommand{\T}{\mathbb T}
+
+\title{Hybrid arithmetic holonomy and\\
+twenty-two individual $p$-adic zeta values}
+\author{Christopher D. Long}
+\date{Re-audited product-digit repaired research draft --- 24 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop a hybrid finite-place refinement of arithmetic holonomy for the
+Eisenstein--Eichler connection on the genus-zero modular curves
+$X_0(p)$, $p\in\{2,3,5,7\}$.  The denominator staircase of the Eichler
+primitive cannot be realized by globally defined scalar solution coordinates:
+the nonzero modular weights create a genuine torus obstruction.  We instead
+use two different local mechanisms.  At auxiliary primes below a cutoff, the
+Hasse invariant algebraizes the unipotent comparison coordinate modulo the
+prime and a genuine-source rank--nullity argument produces one
+determinant-level saving on a large source kernel.  Above the cutoff, we keep the calculation on the algebraic de Rham
+frame torsor; exact divided-Frobenius relations for the raw Eichler rows and a
+coefficient-ring Taylor no-backflow lemma recover the Calegari--Dimitrov--Tang
+prime window without scalarizing the packet.  The resulting arithmetic cost is
+\[
+ \tau_{p,s}(\xi)=\frac{2}{(s+1)^2}
+ \left(S_{p,s}(\xi)+s I^{s+1}_{\xi}(\xi)\right),
+\]
+where $S_{p,s}$ is the small-prime Hasse-codimension cost and
+$I^{s+1}_{\xi}$ is the published prime-window function.  Combining this with
+Calegari's overconvergent Eisenstein family, Buzzard's analytic continuation,
+an exact modular Jensen formula, and Bost's slopes inequality proves the
+irrationality of at least twenty-two individual Kubota--Leopoldt values:
+\[
+ \zeta_2(s)\quad(3\le s\le29,\ s\text{ odd}),\qquad
+ \zeta_3(s)\quad(3\le s\le11,\ s\text{ odd}),
+\]
+\[
+ \zeta_5(3),\quad \zeta_5(5),\quad \zeta_7(3).
+\]
+Every numerical inequality is supplied with an independent rational
+fixed-point interval certificate.  No opposite Hodge filtration, rational Tate
+scalarization, or rowwise transport of literal $n^e$ denominators is used.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Audit status.}
+The proof isolates five published interfaces: Calegari's overconvergent
+Eisenstein family, Buzzard's finite-slope continuation theorem, Katz's Hasse
+invariant formalism, the de Rham frame-torsor/Gauss--Manin construction of
+Graham--Pilloni--Rodrigues Jacinto, and the Bost--Charles/CDT slopes and
+prime-window estimates.  The canonical BGG lift, single-action deepest-row
+projection, genuine-source Hasse kernel, hybrid local lattices, full-product
+pole-grade Cartier argument, collision calculation, and all numerical
+applications are proved in the manuscript.  Because the conclusions include
+individual irrationality statements beyond the classical cases, independent
+specialist review remains appropriate before publication.
+
+\tableofcontents
+
+\section{Introduction and main results}\label{sec:intro}
+
+For an odd integer $s\ge3$, let $\zeta_p(s)$ denote the Kubota--Leopoldt
+$p$-adic zeta value in the normalization used by Calegari.  Calegari proved the
+irrationality of $\zeta_2(3)$ and $\zeta_3(3)$ in \cite{Calegari2005}; the
+irrationality of $\zeta_2(5)$ was later obtained through arithmetic holonomy
+and independently by an Ap\'ery-type construction.  General results also give
+many irrational values or finite alternatives, but usually do not identify a
+large fixed list of individual values; see, for example,
+\cite{Lai2025,LaiLupuSprang2025,LaiSprang2025}.  We do not attempt a complete
+priority analysis here.  Our theorem is the following fixed list.
+
+\begin{theorem}[Twenty-two individual values]\label{thm:main}
+The following $p$-adic numbers are irrational:
+\[
+\begin{aligned}
+ &\zeta_2(s) &&(s=3,5,\ldots,29),\\
+ &\zeta_3(s) &&(s=3,5,\ldots,11),\\
+ &\zeta_5(3),\ \zeta_5(5),\qquad
+ &\zeta_7(3).&
+\end{aligned}
+\]
+\end{theorem}
+
+The proof begins with the negative-weight Eisenstein series
+\[
+ K_{p,s}(q)=\frac{\zeta_p(s)}2+
+ \sum_{n\ge1}\sigma_{-s}^{(p)}(n)q^n,
+ \qquad
+ \sigma_{-s}^{(p)}(n)=
+ \sum_{\substack{d\mid n\\p\nmid d}}d^{-s}.
+\]
+Under the contrary assumption $\zeta_p(s)\in\Q$, this is an arithmetic
+horizontal leaf of a rank-$(s+1)$ Eisenstein--Eichler connection.  Its raw
+Euler derivatives have exact integration depths
+\[
+ 0,s,s-1,\ldots,1,
+\]
+but the positive-depth rows have different modular weights.  The diagonal
+torus part of a Hodge-frame change therefore cannot be represented by a
+bounded rational matrix in the Hauptmodul.  A scalar filtered realization is
+not merely unavailable; it is incompatible with the modular transformation
+law.
+
+The replacement is hybrid.  At small auxiliary primes, the Hasse invariant
+makes the normalized unipotent comparison coordinate rational modulo the
+prime.  A rank--nullity argument on the genuine global source then produces a
+kernel of the required codimension, allowing one reciprocal prime to be saved
+on
+\[
+ (s-1)\left(D-\frac{p+1}{12}\ell\right)+O_{p,s}(1)
+\]
+source directions.  At large auxiliary primes, the scalar pairing is computed
+upstairs on the de Rham frame torsor.  The fibre coordinates remain
+coefficients, while only the raw scalar Eichler rows undergo the exact Dwork
+substitution.  Residue classes modulo $\ell$ prevent Taylor backflow over any
+coefficient algebra and recover a degree-$D+O(1)$ prime window.
+
+For $m=s+1$ define
+\[
+ K_m(\xi)=\floor{\frac{m-1}{\xi}}
+\]
+and
+\begin{equation}\label{eq:I-def-intro}
+ I^m_\xi(\xi)=
+ \left(m-\frac12\right)H_{K_m(\xi)}-K_m(\xi)\xi
+ +\frac{\positivepart{m-(K_m(\xi)+1)\xi}^2}{2(K_m(\xi)+1)}.
+\end{equation}
+Put
+\[
+ c_p=\frac{p+1}{12},\qquad
+ J_p(\xi)=\int_0^\xi(1-c_px)_+\,\dd x
+\]
+and
+\begin{equation}\label{eq:S-def-intro}
+ S_{p,s}(\xi)=s^2\xi-(s-1)J_p(\xi).
+\end{equation}
+Thus, when $c_p\xi<1$,
+\[
+ S_{p,s}(\xi)=s^2\xi-(s-1)
+ \left(\xi-\frac{p+1}{24}\xi^2\right).
+\]
+The main arithmetic statement is as follows.
+
+\begin{theorem}[Hybrid arithmetic holonomy]\label{thm:hybrid-holonomy}
+Fix $p\in\{2,3,5,7\}$ and an odd $s\ge3$.  Under the assumption
+$\zeta_p(s)\in\Q$, let $\boldsymbol\phi$ be admissible adelic continuation
+templates for the rank-$m=s+1$ Eisenstein--Eichler leaf, with derivative width
+$\LambdaAH(\boldsymbol\phi)$ and Bost--Charles energy
+$\Energy(\boldsymbol\phi)$.  For every $1<\xi<m$ one has
+\[
+ m\left(\LambdaAH(\boldsymbol\phi)-\tau_{p,s}(\xi)\right)
+ \le \Energy(\boldsymbol\phi),
+\]
+where
+\begin{equation}\label{eq:tau-main}
+ \boxed{
+ \tau_{p,s}(\xi)=\frac{2}{(s+1)^2}
+ \left(S_{p,s}(\xi)+sI^{s+1}_\xi(\xi)\right).}
+\end{equation}
+\end{theorem}
+
+For the modular templates used below,
+\[
+ \Lambda_p(Y)=\frac{12\log p}{p-1}-2\pi Y
+\]
+and
+\[
+ \Energy_p(Y)=\Lambda_p(Y)+C_p(Y),
+\]
+where
+\begin{equation}\label{eq:C-intro}
+ C_p(Y)=4\pi
+ \sum_{\substack{c\ge1\\p\mid c\\cY<1}}
+ \frac{\varphi(c)}{c^2}
+ \left(\arccos(cY)-cY\sqrt{1-c^2Y^2}\right).
+\end{equation}
+Consequently rationality would force
+\begin{equation}\label{eq:margin-intro}
+ \mathfrak M_{p,s}(\xi,Y):=
+ s\Lambda_p(Y)-(s+1)\tau_{p,s}(\xi)-C_p(Y)\le0.
+\end{equation}
+For the twenty-two pairs in \cref{thm:main}, exact rational witnesses
+$\xi,Y$ make the left side strictly positive.  The smallest independently
+certified lower bound is
+\[
+ \mathfrak M_{5,5}\left(\frac{29}{27},\frac1{16}\right)
+ >0.1317993568270.
+\]
+
+\begin{warning}[What is not proved or used]\label{warn:no-scalarization}
+The argument does not construct globally defined scalar functions whose
+ordinary-LCM depths are $0,1,\ldots,s$.  It does not reverse the Hodge flag,
+transport literal $n^e$ denominators through a change of local coordinate, or
+replace the nonzero-weight Tate trivializations by rational functions of the
+Hauptmodul.  The small-prime saving is only one power of the auxiliary prime;
+the large-prime theorem is proved directly on the de Rham frame torsor.
+\end{warning}
+
+The paper is organized as follows.  \Cref{sec:inputs} states the published
+interfaces and fixes notation.  \Cref{sec:packet} constructs the algebraic
+Eisenstein--Eichler packet and proves its raw arithmetic, BGG realization,
+functional rank, and zero estimate.  \Cref{sec:sources} constructs the global
+source and proves the fixed-data descent and single-action projection bridges.  The small-prime Hasse
+kernel and large-prime torsor Cartier theorem are developed in
+\cref{sec:hybrid-local}.  \Cref{sec:bost} assembles these local estimates by
+Bost's slopes inequality.  Analytic continuation and the exact collision
+energy are proved in \cref{sec:continuation,sec:collision}; the twenty-two
+applications and the interval certificate appear in
+\cref{sec:applications,app:certificate}.
+
+\section{Published inputs and notation}\label{sec:inputs}
+
+We use the following published results.
+
+\begin{enumerate}[label=\textup{(E\arabic*)},leftmargin=3em]
+\item \textbf{Overconvergent Eisenstein families.}
+Write $s=2n+1$ and set $\kappa(a)=a^{-2n}=a^{1-s}$.  In Calegari's notation,
+\[
+ \sigma_\kappa^*(m)
+ =\sum_{\substack{d\mid m\\p\nmid d}}\kappa(d)d^{-1}
+ =\sum_{\substack{d\mid m\\p\nmid d}}d^{-s}.
+\]
+Thus Theorem~2.3 of \cite{Calegari2005} gives an overconvergent eigenform
+with the required nonconstant $q$-expansion, and Lemma~2.4 identifies its
+constant term as $\zeta_p(s)/2$.  This is the form denoted $K_{p,s}$ below.
+
+\item \textbf{Finite-slope continuation.}
+Buzzard's Theorem~5.2 in \cite{Buzzard2003} extends an overconvergent modular
+form of integer weight and nonzero $U_p$-eigenvalue across the wide-open
+$W_0(p)$.
+
+\item \textbf{Hasse invariants and $q$-expansions.}
+We use Katz's geometric Hasse invariant and the $q$-expansion principle from
+\cite{Katz1973}.  For every auxiliary prime $\ell\ge5$, the classical
+congruences
+\[
+ E_{\ell-1}\equiv1\pmod\ell,
+ \qquad E_{\ell+1}\equiv E_2\pmod\ell
+\]
+are used in $q$-expansions.
+
+\item \textbf{The de Rham frame torsor.}
+Propositions~A.14--A.15 of Graham--Pilloni--Rodrigues Jacinto
+\cite{GPRJ2025} provide, at neat level, the algebraic Hodge-compatible
+$B$-torsor, its torus-weight decomposition, the filtration induced by the
+unipotent radical, and the Gauss--Manin connection.  The descent from one
+fixed neat cover to the modular stack and coarse curve, and the uniform
+spreading out over \(\Z[\Sigma^{-1}]\), are not quoted from that source; they
+are proved internally in \cref{lem:neat-descent}.
+
+\item \textbf{Arithmetic holonomy.}
+We use Bost's slopes inequality \cite{Bost2001}; the arithmetic
+Hilbert--Samuel source-degree asymptotic together with the Bost--Charles
+overflow identities
+\cite[Theorem~5.4.1 and Proposition~5.4.2]{BostCharles2022}, in the adelic
+assembly of \cite[Theorem~2.6 and Section~2.3]{CDT2025}; and the
+Chudnovsky--Osgood estimate and scalar source, pivot-height, and prime-window
+formulas of \cite[Theorem~3.2.13 and Section~7.3, especially
+(7.3.7) and (7.3.14)--(7.3.16)]{CDT2024}.  The scalar local-denominator
+hypothesis is replaced by the hybrid finite-place theorem proved here; once
+the interval window is obtained, the CDT prime-number-theorem summation is
+used without alteration.
+\end{enumerate}
+
+All structural algebraic objects independent of the hypothetical rational
+constant $\eta$ are spread over $\Z[\Sigma^{-1}]$ after enlarging a fixed
+finite set $\Sigma$ depending on $p$ and $s$.  Under the contradiction
+hypothesis $\eta\in\Q$, the finitely many primes dividing its denominator
+are treated separately; they contribute only $o(D^2)$.  Such fixed changes
+alter neither a $D^2$ arithmetic-degree coefficient nor a leading pivot-height
+coefficient.
+
+Let
+\[
+ f_p(\tau)=
+ \left(\frac{\Delta(p\tau)}{\Delta(\tau)}\right)^{1/(p-1)}.
+\]
+For $p\in\{2,3,5,7\}$ this is a Hauptmodul at the cusp $P=\infty$ and
+\begin{equation}\label{eq:f-product}
+ f_p(q)=q\prod_{n\ge1}
+ \left(1+q^n+\cdots+q^{(p-1)n}\right)^{24/(p-1)}
+ \in q+q^2\Z[[q]].
+\end{equation}
+Its inverse satisfies
+\begin{equation}\label{eq:q-inverse}
+ q(f_p)\in f_p+f_p^2\Z[[f_p]].
+\end{equation}
+We usually write $f=f_p$ and
+\[
+ D=q\frac{\dd}{\dd q}.
+\]
+
+For an admissible adelic family of continuation templates
+$\boldsymbol\phi=(\phi_v)_v$, each centered at $P$, put
+\[
+ \LambdaAH(\boldsymbol\phi)=
+ \sum_v\log\abs{\phi_v'(0)}_v
+\]
+and
+\[
+ \Energy(\boldsymbol\phi)=
+ \sum_{v\mid\infty}
+ \iint_{\T_v^2}\log\abs{\phi_v(z)-\phi_v(w)}_v\,\dd m(z)\dd m(w)
+ +\sum_{v\nmid\infty}
+ \sup_{z\in\T_v}\log\abs{\phi_v(z)}_v.
+\]
+These are normalized as in \cite[Section~7.3]{CDT2024} and
+\cite[Section~2]{CDT2025}.
+
+\section{The Eisenstein--Eichler packet}\label{sec:packet}
+
+\subsection{The negative-weight Eisenstein form}
+
+For odd $s\ge3$ define
+\begin{equation}\label{eq:J-def}
+ J_{p,s}(q)=\sum_{n\ge1}\sigma_{-s}^{(p)}(n)q^n,
+ \qquad
+ \sigma_{-s}^{(p)}(n)=
+ \sum_{\substack{d\mid n\\p\nmid d}}d^{-s},
+\end{equation}
+and, for a scalar $\eta$,
+\[
+ K_{p,s,\eta}=J_{p,s}+\eta.
+\]
+At
+\[
+ \eta=\zeta_p(s)/2,
+\]
+input (E1) identifies $K_{p,s,\eta}$ as an overconvergent eigenform of
+weight $1-s$.
+
+\begin{lemma}[$U_p$-eigenvalue]\label{lem:Up}
+For every $n\ge1$,
+\[
+ \sigma_{-s}^{(p)}(pn)=\sigma_{-s}^{(p)}(n).
+\]
+Consequently
+\[
+ U_pK_{p,s,\zeta_p(s)/2}=K_{p,s,\zeta_p(s)/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+The divisors of $pn$ that are prime to $p$ are precisely the divisors of $n$
+that are prime to $p$.  The usual $q$-expansion definition of $U_p$ now gives
+the assertion, including the constant term.
+\end{proof}
+
+\subsection{Raw integration depths}
+
+For $1\le e\le s$ put
+\begin{equation}\label{eq:R-def}
+ R_e=D^{s-e}J_{p,s}.
+\end{equation}
+
+\begin{lemma}[Raw integration depth]\label{lem:raw-depth}
+For every $n\ge1$,
+\begin{equation}\label{eq:raw-depth}
+ n^e[q^n]R_e
+ =\sum_{\substack{d\mid n\\p\nmid d}}(n/d)^s\in\Z.
+\end{equation}
+Consequently, if $L_N=\lcmop(1,\ldots,N)$, then
+\[
+ L_N^eR_e(q)\pmod{q^{N+1}}
+\]
+has integral coefficients.  The same is true after the integral substitution
+$q=q(f)$:
+\[
+ L_N^eR_e(q(f))\pmod{f^{N+1}}\in\Z[[f]]/(f^{N+1}).
+\]
+\end{lemma}
+
+\begin{proof}
+The first identity follows directly from
+$[q^n]R_e=n^{s-e}\sigma_{-s}^{(p)}(n)$.  Since $n\mid L_N$ for
+$n\le N$, the $q$-integrality follows.  By \eqref{eq:q-inverse}, the
+coefficient of $f^k$ after substitution uses only $q^n$ with $n\le k$, and
+all composition coefficients are integral.  This proves the final assertion.
+\end{proof}
+
+\begin{remark}
+The lemma transports a cumulative LCM cutoff.  It does not assert the
+coordinatewise identity $n^e[f^n]R_e(f)\in\Z$, which need not be invariant
+under an integral tangent-to-identity change of parameter.
+\end{remark}
+
+\subsection{Exact divided Frobenius}
+
+\begin{lemma}[Exact Dwork relation]\label{lem:Dwork}
+Let $\ell\ne p$ be a rational prime.  For $1\le e\le s$,
+\begin{equation}\label{eq:Dwork-q}
+ \boxed{R_e(q)-\ell^{-e}R_e(q^\ell)\in\Z_\ell[[q]].}
+\end{equation}
+After $q=q(f)$,
+\begin{equation}\label{eq:Dwork-f}
+ R_e(q(f))-\ell^{-e}R_e(q(\varphi_\ell(f)))
+ \in\Z_\ell[[f]],
+\end{equation}
+where
+\[
+ \varphi_\ell(f)=f(q(f)^\ell).
+\]
+\end{lemma}
+
+\begin{proof}
+If $\ell\nmid n$, every divisor of $n$ is an $\ell$-adic unit.  If
+$\ell\mid n$, the $q^n$-coefficient of the left side of
+\eqref{eq:Dwork-q} is
+\[
+ n^{s-e}\left(
+ \sigma_{-s}^{(p)}(n)-\ell^{-s}\sigma_{-s}^{(p)}(n/\ell)
+ \right).
+\]
+The term in parentheses is
+\[
+ \sum_{\substack{d\mid n\\p\nmid d\\\ell\nmid d}}d^{-s},
+\]
+which is $\ell$-integral.  Substitution of the integral inverse coordinate
+gives \eqref{eq:Dwork-f}.
+\end{proof}
+
+\begin{lemma}[Coordinate Frobenius]\label{lem:coordinate-Frob}
+For every prime $\ell$ outside a fixed exceptional set,
+\begin{equation}\label{eq:Frob-expansion}
+ \boxed{
+ \varphi_\ell(f)=f^\ell+\ell\Delta_\ell(f),
+ \qquad
+ \Delta_\ell(f)\in f^{\ell+1}\Z_\ell[[f]].}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The product \eqref{eq:f-product} is integral and begins with $q$.  Hence
+in characteristic $\ell$,
+\[
+ f(q)^\ell=f(q^\ell).
+\]
+Substituting $q=q(f)$ gives
+$\varphi_\ell(f)\equiv f^\ell\pmod\ell$.  Both sides have order
+$\ell$ and the same leading coefficient, so the quotient of their difference
+by $\ell$ has order at least $\ell+1$.
+\end{proof}
+
+\subsection{The split BGG extension}
+
+Let $\calH$ be the rank-two de Rham bundle of the universal elliptic curve,
+with its logarithmic Gauss--Manin connection, and put
+\[
+ V=\Sym^{s-1}\calH.
+\]
+Let $L_{\mathrm{top}}\subset V$ be the top oper line and
+$L_{\mathrm{bot}}$ the bottom oper quotient.  Locally choose an oper
+derivation $\partial$ and an oper frame $v_0,\ldots,v_{s-1}$ such that
+\[
+ L_{\mathrm{top}}=\langle v_0\rangle,
+ \qquad
+ L_{\mathrm{bot}}=V/\langle v_0,\ldots,v_{s-2}\rangle,
+\]
+and
+\[
+ \nabla_\partial v_j=(s-1-j)v_{j+1},
+ \qquad v_s=0.
+\]
+For a local section $F$ of $L_{\mathrm{bot}}\simeq\omega^{1-s}$,
+represented as a scalar in this oper gauge, define
+\begin{equation}\label{eq:spl-def}
+ \operatorname{spl}_s(F)=
+ \sum_{j=0}^{s-1}
+ (-1)^j\frac{(s-1)!}{(s-1-j)!}
+ \partial^{s-1-j}F\,v_j.
+\end{equation}
+
+\begin{lemma}[Canonical BGG lift and normalization]\label{lem:BGG}
+The expression \eqref{eq:spl-def} is the unique local section $G$ of $V$
+with the following two intrinsic properties:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the image of $G$ in $L_{\mathrm{bot}}$ is
+$(-1)^{s-1}(s-1)!F=(s-1)!F$;
+\item $\nabla_VG$ takes values in
+$L_{\mathrm{top}}\otimes\Omega^1(\log D)$.
+\end{enumerate}
+Consequently the local expressions glue in the Zariski topology to a
+canonical algebraic differential operator
+\[
+ \operatorname{spl}_s:\omega^{1-s}\longrightarrow V
+\]
+of order $s-1$.  This is the $\mathrm{GL}_2$ dual-BGG lift in the present
+normalization; compare \cite[Proposition~2.4.3]{RodriguezCamargo2023}.  Moreover,
+\begin{equation}\label{eq:BGG}
+ \nabla_V\operatorname{spl}_s(F)
+ =\iota_s(\operatorname{Bol}_sF).
+\end{equation}
+Here $\iota_s$ is normalized by the oper frame so that its image is the
+$v_0$-line, and $\operatorname{Bol}_sF=\partial^sF$ in an oper coordinate.
+On the Tate disc this is $D^sF$, with $D=q\,\mathrm d/\mathrm dq$.
+\end{lemma}
+
+\begin{proof}
+Put $c_j=(-1)^j(s-1)!/(s-1-j)!$.  The image of
+\eqref{eq:spl-def} in the bottom quotient is $c_{s-1}F=(s-1)!F$, because
+$s-1$ is even.  For $j\ge1$, the coefficient of
+$\partial^{s-j}Fv_j$ in $\nabla_\partial\operatorname{spl}_s(F)$ is
+\[
+ c_j+(s-j)c_{j-1}=0.
+\]
+Only the $v_0$-term $\partial^sFv_0$ remains, proving existence and
+\eqref{eq:BGG} with the displayed normalization.
+
+For uniqueness, let $W=\sum_{j=0}^{s-1}a_jv_j$ have zero image in
+$L_{\mathrm{bot}}$ and suppose $\nabla_VW$ lies in the top oper line.  Then
+$a_{s-1}=0$, and the vanishing of the $v_j$-coefficient of $\nabla_\partial W$
+for $1\le j\le s-1$ gives
+\[
+ \partial a_j+(s-j)a_{j-1}=0.
+\]
+Starting with $j=s-1$ and descending gives
+$a_{s-2}=\cdots=a_0=0$.  Thus the two intrinsic properties determine the
+lift uniquely.  The oper filtration, logarithmic connection, and recursion
+above are algebraic, so local formulas on overlapping algebraic oper charts
+have those same properties, agree, and glue to an algebraic differential
+operator over the field of definition.
+
+For the exact Tate normalization, write
+\[
+ \delta_k^{[a]}=
+ \delta_{k+2(a-1)}\cdots\delta_{k+2}\delta_k.
+\]
+Urban's iterated Gauss--Manin formula
+\cite[Proposition~2.4.1 and Remark~2.4.2]{Urban2013} gives, in the
+polynomial realization on the de Rham torsor,
+\begin{equation}\label{eq:Urban-iterate}
+ \delta_k^{[a]}F
+ =\sum_{j=0}^{a}\binom aj
+   \left(\prod_{b=1}^{j}(k+a-b)\right)
+   X^jD^{a-j}F.
+\end{equation}
+Although Urban writes the formula in the classical nonnegative-weight range,
+its proof is the formal induction from $\delta_k=D+kX$ and
+$[D,X]=-X^2$; both sides are polynomial in $k$.  Hence
+\eqref{eq:Urban-iterate} remains valid at the negative integer
+$k=1-s$.  Taking $a=s-1$, the product in the $j$th coefficient is
+$(-1)^j j!$, so \eqref{eq:Urban-iterate} gives exactly the coefficients in
+\eqref{eq:spl-def}, with no unrecorded scalar or sign.  Taking instead
+$a=s$, every term with $j\ge1$ contains the factor $k+s-1=0$, and hence
+\[
+ \delta_{1-s}^{[s]}F=D^sF.
+\]
+The global derivation and weight decomposition on the Hodge-compatible frame
+torsor are those of \cite[Propositions~A.14--A.15]{GPRJ2025}; thus this Tate
+formula is the torsor realization of the canonical lift just constructed.
+\end{proof}
+
+Put
+\begin{equation}\label{eq:Eevil}
+ E_{p,s+1}^{\mathrm{evil}}:=D^sK_{p,s,\eta}=D^sJ_{p,s}.
+\end{equation}
+Its $q$-expansion is
+\[
+ \sum_{n\ge1}
+ \left(\sigma_s(n)-\mathbf1_{p\mid n}\sigma_s(n/p)\right)q^n,
+\]
+so it is the algebraic $p$-stabilized Eisenstein form of weight $s+1$ and is
+independent of $\eta$.
+
+\begin{proposition}[Split algebraic Eisenstein--Eichler connection]
+\label{prop:split-extension}
+On the split vector bundle
+\[
+ \calE_{p,s}=\calO\oplus V
+\]
+define
+\begin{equation}\label{eq:extension-connection}
+ \nabla_{\calE}(a,v)=
+ \left(\dd a,\nabla_Vv-a\,\iota_s(E_{p,s+1}^{\mathrm{evil}})\right).
+\end{equation}
+This is an algebraic regular-singular connection, and on the Tate formal disc
+\[
+ S_{p,s,\eta}=
+ \left(1,\operatorname{spl}_s(K_{p,s,\eta})\right)
+\]
+is horizontal.
+\end{proposition}
+
+\begin{proof}
+The connection is algebraic because $E_{p,s+1}^{\mathrm{evil}}$ is algebraic;
+integrability is automatic on a curve and regular singularity follows from the
+logarithmic Gauss--Manin connection.  By \cref{lem:BGG},
+\[
+ \nabla_V\operatorname{spl}_s(K_{p,s,\eta})
+ =\iota_s(E_{p,s+1}^{\mathrm{evil}}),
+\]
+which is exactly the horizontality equation for the displayed vector.
+\end{proof}
+
+\subsection{Rees--Bol jets}
+
+On the Tate de Rham torsor use Urban's polynomial coordinate $X$ and
+operators, with the polynomial $q$-expansion normalization of
+\cite[Proposition~2.4.1 and Remark~2.4.2]{Urban2013} and the torsor
+formalism of \cite{GPRJ2025},
+\[
+ \delta_k=D+kX,
+ \qquad
+ D=q\frac{\partial}{\partial q}-X^2\frac{\partial}{\partial X},
+ \qquad[D,X]=-X^2.
+\]
+Define
+\[
+ \calK_0=K_{p,s,\eta},
+ \qquad
+ \calK_j=
+ \delta_{1-s+2(j-1)}\cdots\delta_{1-s}K_{p,s,\eta}
+ \quad(1\le j\le s).
+\]
+
+\begin{proposition}[Integral Rees--Bol identity]\label{prop:Rees-Bol}
+For $0\le j\le s$ there are integers $c_{j,h}$ such that
+\begin{equation}\label{eq:Rees-Bol}
+ \calK_j=\sum_{h=0}^jc_{j,h}X^hD^{j-h}K_{p,s,\eta},
+ \qquad c_{j,0}=1.
+\end{equation}
+The transition from
+$(K,DK,\ldots,D^{s-1}K)$ to
+$(\calK_0,\ldots,\calK_{s-1})$ is lower triangular over $\Z[X]$
+with diagonal $1$, and
+\[
+ \calK_s=D^sK=E_{p,s+1}^{\mathrm{evil}}.
+\]
+For $0\le j\le s-1$, the coefficient of $X^jK$ in $\calK_j$ is
+\begin{equation}\label{eq:top-cj}
+ \boxed{c_{j,j}=(-1)^j\frac{(s-1)!}{(s-1-j)!}.}
+\end{equation}
+The terminal case $j=s$ is the separate Bol identity
+$\calK_s=D^sK$ and has no $X^sK$ term.
+\end{proposition}
+
+\begin{proof}
+Induct using $\delta_k=D+kX$ and $D(X^h)=-hX^{h+1}$.  All coefficients
+remain integral and the coefficient of the highest derivative remains one.
+At the terminal step every $X$-term has a vanishing falling-factorial
+coefficient, which is Bol's identity.  For the top $X$-coefficient write
+$c_j=c_{j,j}$.  The next operator gives
+$c_j=(j-s)c_{j-1}$ with $c_0=1$, proving \eqref{eq:top-cj}.
+\end{proof}
+
+\subsection{Functional rank and the zero estimate}
+
+\begin{proposition}[Functional rank]\label{prop:functional-rank}
+The complex monodromy orbit of the homogenized horizontal leaf
+$S_{p,s,\eta}$ spans a space of dimension $s+1$.
+\end{proposition}
+
+\begin{proof}
+The period-polynomial cocycle is not identically zero.  Otherwise, subtracting a polynomial
+of degree at most $s-1$ from the Eichler primitive would produce a modular
+form of weight $1-s<0$ with moderate growth at every cusp, hence the zero
+form, contradicting $D^sK=E_{p,s+1}^{\mathrm{evil}}\ne0$.
+
+Let $W$ be the span of the cocycle values in
+$\Sym^{s-1}(\C^2)$.  The cocycle relation shows that $W$ is
+$\Gamma_0(p)$-stable.  Since $\Gamma_0(p)$ is Zariski dense in
+$\mathrm{SL}_2(\C)$ and $\Sym^{s-1}(\C^2)$ is irreducible, $W$ is the
+full $s$-dimensional representation.  Adjoining the homogenizing constant
+gives dimension $s+1$.
+\end{proof}
+
+\begin{lemma}[Functional independence]\label{lem:functional-independence}
+In any rational algebraic frame of $\calE_{p,s}$, the coordinate functions of
+the horizontal leaf are linearly independent over $\C(f)$, and hence over
+$\Q(f)$.
+\end{lemma}
+
+\begin{proof}
+If a $\C(f)$-valued rational covector annihilates one branch, its
+single-valuedness implies that it annihilates every analytic continuation of
+that branch.  At a generic basepoint it therefore annihilates the monodromy
+orbit, which spans the fibre by \cref{prop:functional-rank}.  The covector is
+zero.
+\end{proof}
+
+\begin{corollary}[Bost pivot set]\label{cor:zero-estimate}
+Let $V_D$ be the set of nonzero jumps of the vanishing-order filtration of the
+degree-$D$ evaluation map defined in \cref{sec:sources}.  For every
+$\varepsilon>0$,
+\begin{equation}\label{eq:zero-estimate}
+ \#V_D=(s+1)D+O_{p,s}(1),
+ \qquad
+ V_D\subset
+ [0,(s+1+\varepsilon)D+O_{p,s,\varepsilon}(1)].
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Put $m=s+1$.  Choose one fixed rational algebraic frame and multiply by a
+fixed rational normalizer which is regular and nonzero at $P$.  Since the
+bundle and normalizer are fixed, the degree-$D$ source embeds into
+\[
+ \bigl(\Q[f]_{\le D+C}\bigr)^m
+\]
+for one constant $C$, and its evaluation is obtained from $m$ holonomic
+power series which are independent over $\C(f)$ by
+\cref{lem:functional-independence}.  The Chudnovsky--Osgood estimate in the
+form \cite[Theorem~3.2.13]{CDT2024}, applied with polynomial degree $D+C$,
+therefore bounds the vanishing order of every nonzero source element by
+\[
+ (m+\varepsilon)(D+C+1)+C_\varepsilon
+ =(m+\varepsilon)D+O_{p,s,\varepsilon}(1),
+\]
+after replacing $\varepsilon$ by a slightly smaller positive number if
+necessary.  This proves the asserted containment of $V_D$.
+
+The evaluation map is injective: a source in its kernel would give a
+$\C(f)$-linear relation among the coordinate functions.  Since every
+nonzero graded quotient of the one-variable vanishing filtration is
+one-dimensional, the number of jumps is the source rank.  By
+\cref{lem:graded-source}, this is $mD+O_{p,s}(1)$.
+\end{proof}
+
+\section{Global sources and fixed-data bridges}\label{sec:sources}
+
+Let
+\[
+ 0=\calF^{s+1}\subset\calF^s\subset\cdots\subset\calF^0=\calE_{p,s}
+\]
+be the cyclic oper filtration, with rank-one graded lines $L_i$.  On the dual
+bundle put
+\[
+ \calA_i=\Ann(\calF^{i+1})\subset\calE_{p,s}^\vee,
+ \qquad0\le i\le s.
+\]
+Choose a fixed divisor $B$, disjoint from the Tate cusp $P$, clearing all
+fixed poles used below, and define
+\begin{equation}\label{eq:source-MD}
+ M_D=H^0\left(X_0(p),\calE_{p,s}^\vee(DP+B)\right),
+ \qquad
+ M_{D,i}=H^0\left(X_0(p),\calA_i(DP+B)\right).
+\end{equation}
+Because the extension bundle is split as
+$\calE_{p,s}=\calO\oplus V$, put also
+\begin{equation}\label{eq:source-split}
+ M_D^0=H^0\left(X_0(p),\calO(DP+B)\right),
+ \qquad
+ M_D^+=H^0\left(X_0(p),V^\vee(DP+B)\right).
+\end{equation}
+Thus $M_D=M_D^0\oplus M_D^+$, and Riemann--Roch gives
+\begin{equation}\label{eq:positive-source-rank}
+ \dim_\Q M_D^+=sD+O_{p,s}(1).
+\end{equation}
+After spreading out, the same direct-sum decomposition holds for every
+$\Z_\ell$-source lattice outside the fixed model exceptional set.
+
+\begin{lemma}[Exact graded source and saturation]\label{lem:graded-source}
+For $D\gg_{p,s}1$,
+\[
+ M_{D,i}/M_{D,i-1}
+ \simeq H^0\left(X_0(p),L_i^\vee(DP+B)\right).
+\]
+In particular,
+\[
+ \dim_\Q M_D=(s+1)D+O_{p,s}(1),
+ \qquad
+ \dim_\Q(M_{D,i}/M_{D,i-1})=D+O_{p,s}(1).
+\]
+After enlarging one fixed exceptional set $\Sigma$, the induced filtration of
+the $\Z_\ell$-source lattice is saturated for every $\ell\notin\Sigma$,
+uniformly in $D$.
+\end{lemma}
+
+\begin{proof}
+Spread the fixed exact sequences
+$0\to\calA_{i-1}\to\calA_i\to L_i^\vee\to0$, the point $P$, and the
+divisor $B$ over $R=\Z[\Sigma^{-1}]$.  Relative Serre vanishing gives a
+single $D_0$ such that the first higher direct image vanishes for all
+$D\ge D_0$.  Pushforward is then exact and compatible with base change, and
+the integral quotients are finite locally free.  Riemann--Roch on
+$X_0(p)\simeq\mathbf P^1$ gives the dimensions.
+\end{proof}
+
+\begin{lemma}[Fixed neat-level descent and uniform spreading out]
+\label{lem:neat-descent}
+After enlarging $B$ and a fixed finite set $\Sigma$, the following hold.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The de Rham frame torsor and Gauss--Manin connection may be constructed
+on one fixed neat tame cover and descended, through their canonical descent
+data, to the modular stack; the associated bundle
+$\calO\oplus\Sym^{s-1}\calH$, its connection, canonical BGG lift, and
+contraction pairing descend to $X_0(p)\setminus\abs B$.
+
+\item For every $D\gg1$ and every $\lambda\in M_D$, the normalized scalar
+pairing may be computed on a flat algebraic torsor chart and has the form
+\begin{equation}\label{eq:torsor-decomp-bridge}
+ f^D\langle\lambda,S\rangle
+ =H_\lambda(f,u)+\sum_{e=1}^sQ_{e,\lambda}(f,u)R_e(f),
+\end{equation}
+where $u$ denotes fibre coordinates,
+\[
+ \operatorname{supp}_fQ_{e,\lambda}\subset[-C,D+C],
+\]
+and the fibre-variable degree is bounded by a constant depending only on
+$p,s$.
+
+\item All these objects have models over $\Z[\Sigma^{-1}]$, with $\Sigma$
+independent of $D$.  Fixed changes of model or of $B$ contribute
+$o(D^2)$ to global arithmetic degrees and summed pivot heights.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Choose a fixed neat tame level $N\ge5$, prime to $p$, and a finite Galois
+cover $Y\to\mathscr X_0(p)$.  The frame torsor and connection of
+\cite[Propositions~A.14--A.15]{GPRJ2025} are functorial in the elliptic curve
+and level structure, so the two pullbacks to
+$Y\times_{\mathscr X_0(p)}Y$ agree and satisfy the cocycle condition.  They
+descend to the modular stack.  The generic stabilizer $-1$ acts trivially on
+$\Sym^{s-1}\calH$ because $s-1$ is even.  Put the finitely many elliptic
+points into $B$; the associated bundle, the canonical lift of
+\cref{lem:BGG}, and the invariant pairing then descend to the coarse curve
+away from $B$.
+
+Choose a fixed rational algebraic frame on that affine open, regular at $P$.
+Since $f$ is a rational coordinate with a simple zero at $P$, multiplication
+by $f^D$ cancels the variable pole at $P$.  The remaining coordinates have
+$f$-support $[-C,D+C]$ and only fixed poles away from $P$.  Pullback to the
+frame torsor and use the fixed representation $1\oplus\Sym^{s-1}$ together
+with the fixed-order BGG/Rees--Bol differential operator.  This gives
+\eqref{eq:torsor-decomp-bridge} with fibre degree bounded solely in terms of
+$p,s$.
+
+Finally, the finite collection of bundles, matrices, divisors, torsor charts,
+and morphisms spreads out after clearing finitely many denominators.  The
+torsor chart may be chosen smooth, hence flat, over the resulting base.  A fixed model change distorts norms on a source of rank $O(D)$ and on
+$O(D)$ one-dimensional pivot quotients, hence contributes at most
+$O(D\log D)=o(D^2)$.
+\end{proof}
+
+\begin{proposition}[Single unipotent action on the deepest multiplier]
+\label{prop:single-unipotent}
+Write $s=2r+1$ and $H=D\log f$.  Fix the algebraic Hodge splitting
+$\sigma$ used below, regular at $P$, and write $x=X/H$ for the normalized
+unipotent coordinate.  There are a fixed
+polynomial $g(f)\in\Z[\Sigma^{-1}][f]$ with $g(0)$ a unit and a constant $C$
+such that, for every $D\gg1$ and every $\lambda\in M_D^+$, the multiplier of
+the normalized undifferentiated row $H^rK$ in
+$f^D\langle\lambda,S\rangle$ has the form
+\begin{equation}\label{eq:genuine-q0-shape}
+ q_{0,\lambda}(f,x)=\sum_{j=0}^{s-1}Q_{j,\lambda}(f)x^j,
+\end{equation}
+linear in $\lambda$, with
+\begin{equation}\label{eq:genuine-q0-degree}
+ g(f)Q_{j,\lambda}(f)\in\Z[\Sigma^{-1}][f],
+ \qquad
+ \deg\bigl(gQ_{j,\lambda}\bigr)\le D+C.
+\end{equation}
+The same assertions hold after reduction at every $\ell\notin\Sigma$.
+Only one degree-$(s-1)$ unipotent matrix occurs in
+\eqref{eq:genuine-q0-shape}; in particular there is no doubled
+$2(s-1)$ fibre degree.
+\end{proposition}
+
+\begin{proof}
+Put $n=s-1$ and choose the monomial basis
+$e_j=e_0^{n-j}e_1^j$ of $\Sym^n\calH$.  For
+\[
+ u(x)=\begin{pmatrix}1&x\\0&1\end{pmatrix}
+\]
+one has, in this basis,
+\begin{equation}\label{eq:unipotent-matrix}
+ \Sym^n(u(x))e_j
+ =\sum_{h=0}^j\binom{j}{h}x^{j-h}e_h.
+\end{equation}
+Thus every entry of $\Sym^n(u(x))$, its inverse, and their dual matrices is
+an integral polynomial in $x$ of degree at most $n$.
+
+Write the coordinates of $f^D\lambda$ in the dual frame induced by the fixed
+splitting $\sigma$ as
+$P_{0,\lambda}(f),\ldots,P_{n,\lambda}(f)$.  These are functions on the base
+and contain no fibre coordinate.  In the canonical BGG lift
+\eqref{eq:spl-def}, the undifferentiated $K$ occurs only in the bottom
+extremal component.  The Tate oper frame and the $\sigma$-frame differ by a
+diagonal torus factor and one unipotent factor $u(x)$.  Transport the
+$V$-valued BGG lift to the $\sigma$-frame and keep the source covector in the
+$\sigma$-dual frame.  By equivariance of contraction,
+\[
+ \langle P,\rho(u(x))W\rangle
+ =\langle\rho^\vee(u(x)^{-1})P,W\rangle,
+ \qquad \rho=\Sym^n,
+\]
+so either description uses one matrix from \eqref{eq:unipotent-matrix}, not a
+product of two such matrices.  More explicitly, let $\operatorname{coeff}_{K}$ denote projection onto
+the literal undifferentiated raw $K$-row and normalize the coefficient by
+$H^{-r}$.  Then
+\begin{align}
+ q_{0,\lambda}(f,x)
+ &=H^{-r}\operatorname{coeff}_{K}
+   \left\langle f^D\lambda,
+     \rho(u(x))\operatorname{spl}_s(K)\right\rangle\label{eq:q0-one-action}\\
+ &=H^{-r}\operatorname{coeff}_{K}
+   \left\langle\rho^\vee(u(x)^{-1})f^D\lambda,
+     \operatorname{spl}_s(K)\right\rangle.\nonumber
+\end{align}
+The Rees--Bol identity is the raw-derivative coordinate formula for this same
+transported BGG section; it is not a second frame transport.  Since the
+undifferentiated $K$ occurs only in the bottom extremal component of
+\eqref{eq:spl-def}, \eqref{eq:q0-one-action} is a fixed row of one matrix in
+\eqref{eq:unipotent-matrix} applied to the base-coordinate vector
+$P_\lambda$.  Hence it has $x$-degree at most $s-1$.
+
+The factor $H^{-r}$ is independent of $x$, and it exactly removes the
+diagonal weight of the bottom component.  The resulting coefficient is
+weight zero and therefore descends from the torsor to a rational function on
+the base.  More generally the diagonal factor contributes no additional
+variable because
+\[
+ \operatorname{wt}(\calK_j)=1-s+2j,
+ \qquad \operatorname{wt}(H)=2,
+ \qquad \operatorname{wt}(H^{r-j}\calK_j)=0.
+\]
+Finally, as in \cref{lem:neat-descent}, a fixed polynomial $g(f)$, nonzero at
+$P$, clears all fixed poles of the coordinates $P_{j,\lambda}$ and the
+fixed poles introduced by the normalization $H^{-r}$; multiplication by
+$f^D$ then gives degree $D+O(1)$.  This proves
+\eqref{eq:genuine-q0-shape}--\eqref{eq:genuine-q0-degree}.  The entire
+construction spreads out with the fixed torsor and representation, so the
+same formula holds after every reduction at $\ell\notin\Sigma$.
+\end{proof}
+
+\begin{lemma}[Adelic fixed-bundle norm comparison]
+\label{lem:fixed-bundle}
+Let $\calV$ be a fixed rank-$m$ vector bundle on $\mathbf P^1_\Q$, equipped
+with fixed adelic models and metrics, and put
+\[
+ N_D=H^0\left(\mathbf P^1,\calV(DP+B)\right).
+\]
+Suppose that the scalar contraction with a fixed horizontal leaf is
+injective and that its pivot set satisfies a linear zero estimate.  Relative
+to $m$ scalar polynomial sources of degree $D$, replacing the source by
+$N_D$, shifting the scalar degrees by fixed integers, multiplying by a fixed
+normalizer regular and nonzero at $P$, changing a fixed algebraic frame, or
+changing finitely many local models alters both the source degree and the
+sum of evaluation heights by $o(D^2)$.  Consequently
+\begin{equation}\label{eq:fixed-bundle-degree}
+ \widehatdeg N_D=\frac m2\Energy D^2+o(D^2),
+\end{equation}
+and
+\begin{equation}\label{eq:fixed-bundle-heights}
+ \sum_{n\in V_D}\sum_vh_v(\psi_D^{(n)})
+ \le\left(-\frac{m^2}{2}\LambdaAH+m\Energy\right)D^2
+ +\mathscr A_D+o(D^2).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By Birkhoff--Grothendieck there is a fixed global bundle isomorphism
+\begin{equation}\label{eq:BG-splitting}
+ \calV(B)\simeq\bigoplus_{i=1}^m\calO(a_i)
+\end{equation}
+with fixed integers $a_i$.  Transport the fixed adelic data through this
+isomorphism.  At every place, the original and transported norms are
+uniformly equivalent on the fixed analytic template; outside a finite set of
+finite places the integral models agree up to units.  Thus there are constants
+$C_v\ge1$, equal to $1$ for all but finitely many $v$, which bound the
+operator norms of the comparison and its inverse.  If
+$N_D^{\mathrm{spl}}$ denotes the same source with the transported split norms,
+then
+\[
+ \left|\widehatdeg N_D-\widehatdeg N_D^{\mathrm{spl}}\right|
+ \le \rank(N_D)\sum_v\log C_v=O(D).
+\]
+This is the required determinant-norm comparison.
+
+Under \eqref{eq:BG-splitting}, the source is the direct sum of the scalar
+sources
+\[
+ H^0\bigl(\mathbf P^1,\calO((D+a_i)P)\bigr),
+ \qquad 1\le i\le m,
+\]
+up to fixed conventions for the divisor $B$.  The scalar source-degree asymptotic, in the normalization of
+\cite[(7.3.7)]{CDT2024}, and its adelic form in
+\cite[Section~2.3 and the proof of Theorem~2.6]{CDT2025}, where the
+arithmetic Hilbert--Samuel theorem is combined with the Bost--Charles overflow
+identities \cite[Theorem~5.4.1 and Proposition~5.4.2]{BostCharles2022}, gives
+\[
+ \frac12\Energy(D+a_i)^2
+ =\frac12\Energy D^2+O(D)
+\]
+for the $i$th summand.  Summing and including the $O(D)$ norm distortion
+proves \eqref{eq:fixed-bundle-degree}.
+
+We next compare evaluation heights.  In the split frame the contraction is a
+scalar Pad\'e evaluation with $m$ fixed holonomic coordinate functions and
+row degrees $D+a_i$.  On each fixed continuation template the bundle
+comparison matrices are analytic and bounded; after the fixed normalizer has
+cleared the fixed poles, the same is true of the matrices needed for the
+local upper bound.  At all but finitely many finite places these matrices are
+integral of norm one.  The normalizer is regular and nonzero at $P$, so it
+preserves vanishing order, and its local sup norm contributes only a fixed
+factor.  Consequently these comparisons contribute $O(1)$ per pivot;
+allowing the standard monomial/coefficient-lattice comparison gives the
+harmless bound $O(\log D)$ per pivot.  There are $mD+O(1)$ pivots, so the total comparison error is
+$O(D\log D)=o(D^2)$.
+
+Replacing $D+a_i$ by $D$ changes the analytic $D\Energy$ term by $O(1)$ per
+pivot.  It also shifts any finite-place multiplier window by only $O(1)$;
+the sum of the corresponding fixed boundary contributions is
+$O(D\log D)$.  The scalar CDT estimates
+\cite[(7.3.14)--(7.3.15)]{CDT2024} therefore apply with unchanged $D^2$
+coefficients.  Finally, the $mD+O(1)$ pivot orders are distinct and
+nonnegative, whence
+\[
+ \sum_{n\in V_D}n\ge\frac12m^2D^2+o(D^2).
+\]
+Inserting this in the scalar height estimate proves
+\eqref{eq:fixed-bundle-heights}.
+\end{proof}
+
+\section{The hybrid local arithmetic theorem}\label{sec:hybrid-local}
+
+Throughout this section, $p$ and the odd integer $s$ are fixed, and
+$\zeta_p(s)\in\Q$ is assumed.  Put
+\[
+ \eta=\zeta_p(s)/2\in\Q.
+\]
+Let $\Sigma_{p,s}$ be the fixed geometric/model exceptional set, independent
+of $\eta$, enlarged to contain $p$ and every prime
+$\ell\le\max\{3,s\}$.  Write $\eta=u/v$ in lowest terms, with
+$u\in\Z$, $v\in\Z_{>0}$, and put
+\[
+ \Sigma_\eta=\{\ell:\ell\mid v\},
+ \qquad t_\ell=v_\ell(v).
+\]
+We call a prime $\ell$ \emph{geometrically good} if
+$\ell\notin\Sigma_{p,s}$, and \emph{arithmetically good} if it is
+geometrically good and $\ell\notin\Sigma_\eta$.  Thus every geometrically
+good prime automatically satisfies $\ell>\max\{3,s\}$.  The Hasse
+codimension theorem below is uniform at every geometrically good prime and is
+independent of $\eta$; the one-power saving is used only at arithmetically
+good primes.  The explicit baseline lattice at the finite set
+$\Sigma_{p,s}\cup\Sigma_\eta$ is defined after the shifted cutoff $N^\sharp$ is fixed in
+\eqref{eq:bad-small-lattice}.  Constants below are uniform in $D$ and in every
+prime to which the corresponding statement applies.
+
+\subsection{Weight-zero normalization and the comparison coordinate}
+
+Write $s=2r+1$ and put
+\begin{equation}\label{eq:A-C-rows}
+ A_j=H^{r-j}D^jJ,
+ \qquad
+ C_j=H^{r-j}\calK_j,
+ \qquad
+ H=D\log f.
+\end{equation}
+Since $H=1+O(q)$, its positive and negative fixed powers are integral formal
+units outside a fixed exceptional set.  With $x=X/H$, \cref{prop:Rees-Bol}
+and $K=J+\eta$ give, for $0\le j\le s-1$,
+\begin{equation}\label{eq:C-vs-A}
+ \boxed{
+ C_j=\sum_{h=0}^jc_{j,h}x^hA_{j-h}
+      +c_{j,j}\eta H^r x^j.}
+\end{equation}
+Indeed $D^{j-h}K=D^{j-h}J$ unless $h=j$, when the undifferentiated
+constant $\eta$ remains.  Thus, for a formal linear combination of these
+Rees--Bol iterates with multipliers $P_j$, if
+\begin{equation}\label{eq:qk-definition}
+ q_k=\sum_{j=k}^{s-1}c_{j,j-k}x^{j-k}P_j
+ \qquad(0\le k\le s-1),
+\end{equation}
+then
+\begin{equation}\label{eq:corrected-row-decomp}
+ \boxed{
+ \sum_{j=0}^{s-1}P_jC_j
+ =q_0(A_0+\eta H^r)+\sum_{k=1}^{s-1}q_kA_k.}
+\end{equation}
+In particular, the rational constant term and the depth-$s$ row have the same
+multiplier $q_0$.  This is an identity in the polynomial realization of the
+BGG lift; it is not an assertion that the functions $C_j$ form a rational
+scalar coordinate system for the global source.  Actual global contractions
+are handled by \cref{eq:torsor-decomp-bridge,prop:single-unipotent}.
+
+Choose an algebraic Hodge splitting $\sigma$ on an affine open containing the
+Tate cusp.  Evaluating Urban's operator on a classical weight-$k$ modular
+form gives $D_q+kX_\sigma$, whereas the Serre derivative is
+$D_q-kE_2/12$.  Their difference is a meromorphic modular form of weight two.
+Thus
+\begin{equation}\label{eq:X-sigma}
+ X_\sigma=-\frac{E_2}{12}+g_\sigma,
+ \qquad g_\sigma\in M_2^{\mathrm{mer}}(\Gamma_0(p)),
+\end{equation}
+and hence
+\begin{equation}\label{eq:x-sigma}
+ x_\sigma=-\frac{E_2}{12H}+r_\sigma(f),
+ \qquad r_\sigma(f)\in\Q(f).
+\end{equation}
+
+\begin{lemma}[Hasse algebraization and degree]\label{lem:Hasse-degree}
+For every geometrically good auxiliary prime $\ell$, the reduction of
+$x_\sigma$ belongs to $\F_\ell(f)$.  Writing
+\[
+ \bar x_\sigma=\frac{a_\ell(f)}{b_\ell(f)}
+\]
+in lowest terms with $b_\ell(0)\ne0$, one has
+\begin{equation}\label{eq:delta-bound}
+ \delta_\ell:=\max\{\deg a_\ell,\deg b_\ell\}
+ \le c_p\ell+C,
+ \qquad c_p=\frac{p+1}{12}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Modulo $\ell$, the Hasse invariant is represented by $E_{\ell-1}$, whose
+$q$-expansion is $1$, and $E_{\ell+1}\equiv E_2$.  Hence the reduction of
+\eqref{eq:x-sigma} is represented by
+\[
+ -\frac{E_{\ell+1}}{12H E_{\ell-1}}+\bar r_\sigma(f),
+\]
+a modular function on $X_0(p)_{\F_\ell}$.  The numerator and denominator of
+the first term are sections of the same weight-$(\ell+1)$ line bundle.  The
+classical weighted valence formula for $\Gamma_0(p)$ gives total orbifold zero
+degree
+\[
+ \frac{[\mathrm{SL}_2(\Z):\Gamma_0(p)](\ell+1)}{12}
+ =\frac{(p+1)(\ell+1)}{12}
+\]
+for either section; see \cite{Katz1973}.  We use only this upper bound and its
+leading coefficient.  Since the numerator and denominator have the same
+weight, their quotient is weight zero.  On passage to the coarse genus-zero
+curve, the only convention change occurs at the finitely many elliptic
+points; the correction to the zero or pole order is bounded independently of
+$\ell$.  Adding the fixed rational term $\bar r_\sigma(f)$ changes numerator
+and denominator degrees by another $O_{p,s}(1)$.  Hence
+\[
+ \max\{\deg a_\ell,\deg b_\ell\}
+ \le\frac{p+1}{12}\ell+O_{p,s}(1),
+\]
+which is \eqref{eq:delta-bound}.  Regularity of the chosen splitting at the
+cusp and $H(0)=1$ give $b_\ell(0)\ne0$.
+\end{proof}
+
+\subsection{The genuine-source Hasse kernel}
+
+The small-prime argument is made on the actual global positive source
+$M_D^+$, not on a putative scalar Rees--Bol coordinate block on the base.
+For $\lambda\in M_D^+$ let $q_{0,\lambda}(f,x)$ be the multiplier of
+the normalized deepest row $H^rK$ from \cref{prop:single-unipotent}; after
+separating $K=J+\eta$ it multiplies $A_0+\eta H^r$.  On the splitting $\sigma$ it is evaluated at
+$x=x_\sigma(f)$.
+
+\begin{theorem}[Uniform genuine-source Hasse codimension]
+\label{thm:genuine-Hasse}
+There are constants $D_0,C$, depending only on $p,s$ and the fixed models,
+such that the following holds.  Let $D\ge D_0$ and let
+$\ell$ be geometrically good.  Write
+\[
+ \bar x_\sigma=\frac{a_\ell(f)}{b_\ell(f)},
+ \qquad
+ \delta_\ell=\max\{\deg a_\ell,\deg b_\ell\}
+\]
+as in \cref{lem:Hasse-degree}.  Then the reduction of the genuine positive
+source contains a subspace
+$\overline K_{D,\ell}\subset\overline M_D^+$ with
+\begin{equation}\label{eq:kernel-rank}
+ \boxed{
+ \dim_{\F_\ell}\overline K_{D,\ell}
+ \ge (s-1)\max\{0,D-\delta_\ell-C\}
+ \ge (s-1)\max\{0,D-\ceil{c_p\ell}-C\},}
+\end{equation}
+such that
+\begin{equation}\label{eq:q0-mod-l-zero}
+ q_{0,\bar\lambda}\!\left(f,\frac{a_\ell}{b_\ell}\right)=0
+ \quad\text{in }\F_\ell[[f]]
+ \qquad(\bar\lambda\in\overline K_{D,\ell}).
+\end{equation}
+Any subspace of $\overline K_{D,\ell}$ lifts to a saturated direct summand
+$K_{D,\ell}\subset M^+_{D,\ell}$ satisfying
+\begin{equation}\label{eq:q0-l-divisible}
+ q_{0,\lambda}(f,x_\sigma(f))\in\ell\Z_\ell[[f]]
+ \qquad(\lambda\in K_{D,\ell}).
+\end{equation}
+The constants, the geometric exceptional set, and this codimension statement
+are independent of $\eta$.
+\end{theorem}
+
+\begin{proof}
+By \cref{prop:single-unipotent}, after multiplication by the fixed polynomial
+$g(f)$ with $g(0)$ a unit, one has
+\[
+ q_{0,\lambda}(f,x)=\sum_{j=0}^{s-1}Q_{j,\lambda}(f)x^j,
+ \qquad
+ \deg(gQ_{j,\lambda})\le D+C_0.
+\]
+Reduction modulo $\ell$ therefore defines an $\F_\ell$-linear map on the
+actual global source
+\begin{align}
+ T_{D,\ell}:\overline M_D^+&\longrightarrow
+ \F_\ell[f]_{\le D+(s-1)\delta_\ell+C_1},\label{eq:Hasse-T-map}\\
+ \bar\lambda&\longmapsto
+ \bar g(f)b_\ell(f)^{s-1}
+ q_{0,\bar\lambda}\!\left(f,\frac{a_\ell(f)}{b_\ell(f)}\right).
+ \nonumber
+\end{align}
+Indeed, the $j$th summand after clearing $b_\ell^{s-1}$ has degree at most
+$D+C_0+j\delta_\ell+(s-1-j)\delta_\ell$.
+
+By \eqref{eq:positive-source-rank} and base change,
+\[
+ \dim_{\F_\ell}\overline M_D^+=sD+O_{p,s}(1),
+\]
+whereas the target of \eqref{eq:Hasse-T-map} has dimension at most
+$D+(s-1)\delta_\ell+O_{p,s}(1)$.  Rank--nullity gives
+\[
+ \dim\ker T_{D,\ell}
+ \ge(s-1)(D-\delta_\ell)-C_2.
+\]
+After increasing one fixed constant $C$, this implies the first lower bound
+in \eqref{eq:kernel-rank}; \cref{lem:Hasse-degree} gives the second.  Take
+$\overline K_{D,\ell}$ to be a subspace of the kernel of the displayed
+conservative dimension.
+
+Since $g(0)$ and $b_\ell(0)$ are units, both are invertible in
+$\F_\ell[[f]]$.  The identity $T_{D,\ell}(\bar\lambda)=0$ therefore implies
+\eqref{eq:q0-mod-l-zero}; equivalently, use that
+$\F_\ell[[f]]$ is a domain.  Extend a basis of
+$\overline K_{D,\ell}$ to an $\F_\ell$-basis of
+$\overline M_D^+$ and lift the entire basis to the free lattice
+$M_{D,\ell}^+$.  The lifted first vectors span a saturated direct summand
+$K_{D,\ell}$.  The integral models of \cref{lem:neat-descent} make the
+multiplier integral and its reduction compatible with this lift.  Its
+reduction is zero, proving \eqref{eq:q0-l-divisible}.
+\end{proof}
+
+\begin{remark}
+The proof uses only the actual global source, the degree-$(s-1)$ unipotent
+representation, and Hasse algebraization of $x_\sigma$.  It does not identify
+the normalized Rees--Bol rows with scalar coordinates in a rational frame on
+the base curve.
+\end{remark}
+
+\begin{lemma}[Actual deepest-row decomposition]\label{lem:actual-deepest-row}
+On the fixed splitting chart, for every $D\gg1$ and every
+$\lambda\in M_D^+$ one may write the normalized genuine contraction as
+\begin{equation}\label{eq:actual-deepest-row}
+ f^D\langle\lambda,S\rangle
+ =G_\lambda(f,u)+q_{0,\lambda}(f,x_\sigma)H^rJ
+  +\eta q_{0,\lambda}(f,x_\sigma)H^r
+  +\sum_{e=1}^{s-1}\widetilde Q_{e,\lambda}(f,u)R_e(f),
+\end{equation}
+where $G_\lambda$ is depth zero, the $f$-supports are contained in a fixed
+enlargement of $[-C,D+C]$, and all displayed multipliers are integral at every
+arithmetically good prime.  Thus the multiplier of the unique depth-$s$ row
+$R_s=J$ is the formal unit $H^r$ times the genuine multiplier
+$q_{0,\lambda}$ of \cref{prop:single-unipotent}; every other nonalgebraic row
+has depth at most $s-1$.
+\end{lemma}
+
+\begin{proof}
+Apply the genuine torsor decomposition \eqref{eq:torsor-decomp-bridge} to the
+canonical BGG lift.  By \cref{prop:single-unipotent}, the coefficient of its normalized
+undifferentiated component $H^rK=H^r(J+\eta)$ is $q_{0,\lambda}$.
+Separating $K=J+\eta$ gives the two middle terms of
+\eqref{eq:actual-deepest-row}.  All remaining components involve
+$D^jJ=R_{s-j}$ with $j\ge1$, hence have depth at most $s-1$.  The support and
+integrality assertions follow from the spread-out model in
+\cref{lem:neat-descent}; fixed powers of $H$ are integral formal units at an
+arithmetically good prime.
+\end{proof}
+
+\subsection{The small-prime hybrid lattice}
+
+Fix $1<\xi<s+1$.  Choose once and for all a constant
+$C_{\mathrm{sh}}$ at least as large as the absolute value of every fixed
+negative $f$-support bound in \cref{lem:neat-descent,lem:actual-deepest-row},
+and put
+\[
+ N_0=\floor{\xi D},
+ \qquad
+ N^\sharp=N_0+C_{\mathrm{sh}},
+ \qquad
+ a_{\ell,D}=v_\ell(L_{N^\sharp}).
+\]
+The fixed enlargement from $N_0$ to $N^\sharp$ ensures that a Laurent
+multiplier with lower support at least $-C_{\mathrm{sh}}$ can only use raw
+coefficients of index at most $N^\sharp$ in an evaluated coefficient through
+$f^{N_0}$.  Since $C_{\mathrm{sh}}$ is fixed,
+$\log L_{N^\sharp}=\xi D+o(D)$.
+For every $\ell\in\Sigma_{p,s}$ choose a fixed integer
+$\beta_\ell\ge0$ clearing the denominators of the chosen local model, frame,
+and fixed powers of $H$; put $\beta_\ell=0$ for
+$\ell\notin\Sigma_{p,s}$.  At every prime
+$\ell\in\Sigma_{p,s}\cup\Sigma_\eta$ with $\ell\le N^\sharp$, define the baseline
+lattice
+\begin{equation}\label{eq:bad-small-lattice}
+ M^{\mathrm{bad}}_{D,\ell}
+ =\ell^{\beta_\ell}M^0_{D,\ell}\oplus
+ \ell^{sa_{\ell,D}+\beta_\ell+t_\ell}M^+_{D,\ell},
+\end{equation}
+where $t_\ell=0$ when $\ell\notin\Sigma_\eta$.  The factor
+$\ell^{sa_{\ell,D}}$ clears every positive-depth raw row needed through
+$f^{N_0}$ by \cref{lem:raw-depth}; the fixed factor $\beta_\ell$ clears
+model and frame denominators on both split source blocks, and
+$t_\ell$ clears the denominator of $\eta$.  Since the exceptional set is
+finite and $a_{\ell,D}=O_\ell(\log D)$, its total index contribution is
+$O_{p,s,\eta}(D\log D)=o(D^2)$.  Omitting the one-power Hasse saving at these
+fixed primes costs only $O_{p,s,\eta}(D)$.
+
+For each arithmetically good prime $\ell\le N^\sharp$, use
+\cref{thm:genuine-Hasse} to choose a
+saturated direct summand $K_{D,\ell}\subset M^+_{D,\ell}$ of conservative
+rank
+\begin{equation}\label{eq:r-star}
+ r^*_{D,\ell}=(s-1)
+ \max\{0,D-\ceil{c_p\ell}-C\},
+\end{equation}
+and choose a complement $K^c_{D,\ell}$ in $M^+_{D,\ell}$.  With the exact
+split source $M_{D,\ell}=M^0_{D,\ell}\oplus M^+_{D,\ell}$, define
+\begin{equation}\label{eq:hybrid-lattice}
+ M^{\mathrm{hyb}}_{D,\ell}
+ =M^0_{D,\ell}
+ \oplus \ell^{sa_{\ell,D}-1}K_{D,\ell}
+ \oplus \ell^{sa_{\ell,D}}K^c_{D,\ell}.
+\end{equation}
+
+\begin{lemma}[Small-prime integrality]\label{lem:small-integrality}
+Every unit vector of \eqref{eq:hybrid-lattice} has integral evaluation through
+$f^{N_0}$.
+\end{lemma}
+
+\begin{proof}
+Write $a=a_{\ell,D}\ge1$.  For $\lambda\in K_{D,\ell}$ use the actual
+genuine-source decomposition \eqref{eq:actual-deepest-row}.  By
+\cref{thm:genuine-Hasse},
+$q_{0,\lambda}(f,x_\sigma(f))\in\ell\Z_\ell[[f]]$, and $H^r$ is a formal
+unit.  Hence the depth-$s$ row $J=R_s$ acquires the missing one power of
+$\ell$, so $(sa-1)+1=sa$ clears its $L_{N^\sharp}^s$ denominator.  The constant term is
+integral because $\eta\in\Z_\ell$ at an arithmetically good prime and is
+multiplied by the same divisible coefficient.
+
+Every remaining nonalgebraic row in \eqref{eq:actual-deepest-row} has depth
+$d\le s-1$, while
+\[
+ sa-1\ge da
+\]
+for $a\ge1$.  Its multiplier is integral by
+\cref{lem:actual-deepest-row}.  Thus $\ell^{sa-1}$ clears every row on
+$K_{D,\ell}$; the complement is scaled by the worst depth $sa$.  Apply
+\cref{lem:raw-depth} with cutoff $N^\sharp$ after the integral
+substitution $q=q(f)$.
+\end{proof}
+
+\begin{proposition}[Small-prime determinant cost]\label{prop:small-cost}
+The local index exponent is
+\begin{equation}\label{eq:local-index}
+ v_\ell[M_{D,\ell}:M^{\mathrm{hyb}}_{D,\ell}]
+ =s^2Da_{\ell,D}-r^*_{D,\ell}+O_{p,s}(a_{\ell,D}).
+\end{equation}
+After summing over arithmetically good $\ell\le N^\sharp$, and using
+\eqref{eq:bad-small-lattice} at the finite exceptional set, the total
+small-prime index is
+\begin{equation}\label{eq:small-cost}
+ \sum_{\ell\le N^\sharp}
+ \log[M_{D,\ell}:M^{\mathrm{small}}_{D,\ell}]
+ =S_{p,s}(\xi)D^2+o(D^2),
+\end{equation}
+where $M^{\mathrm{small}}_{D,\ell}$ denotes
+$M^{\mathrm{hyb}}_{D,\ell}$ at arithmetically good primes and
+$M^{\mathrm{bad}}_{D,\ell}$ at primes in
+$\Sigma_{p,s}\cup\Sigma_\eta$.  These cases are exhaustive by construction.
+We define the adelic source lattice
+$M_D^{\mathrm{hyb}}$ by these local lattices for $\ell\le N^\sharp$ and by the
+unmodified source lattice for $\ell>N^\sharp$.  Here
+\[
+ S_{p,s}(\xi)=s^2\xi-(s-1)
+ \int_0^\xi(1-c_px)_+\,\dd x.
+\]
+In particular, if $c_p\xi<1$, then
+\begin{equation}\label{eq:small-cost-simple}
+ S_{p,s}(\xi)=s^2\xi-(s-1)
+ \left(\xi-\frac{p+1}{24}\xi^2\right).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The positive source has rank $sD+O(1)$.  Hence
+\[
+ (sa-1)r^*+sa(sD+O(1)-r^*)
+ =s^2Da-r^*+O(a),
+\]
+which proves \eqref{eq:local-index}.  Now
+\[
+ \sum_{\ell\le N^\sharp}a_{\ell,D}\log\ell
+ =\log L_{N^\sharp}=\xi D+o(D).
+\]
+The prime number theorem and partial summation give
+\[
+ \sum_{\ell\le N^\sharp}r^*_{D,\ell}\log\ell
+ =(s-1)D^2\int_0^\xi(1-c_px)_+\,\dd x+o(D^2).
+\]
+Removing the finite set $\Sigma_{p,s}\cup\Sigma_\eta$ from the two prime
+sums changes their leading terms by at most $O_{p,s,\eta}(D\log D)$.  The
+baseline lattices \eqref{eq:bad-small-lattice} and the $O(a)$ errors also
+contribute $O_{p,s,\eta}(D\log D)=o(D^2)$.
+\end{proof}
+
+\begin{lemma}[Residual small-prime heights]\label{lem:small-residual}
+After the cutoff, the total residual positive denominator penalty at primes
+$\ell\le N^\sharp$, summed over all pivots, is
+\[
+ O_{p,s,\xi}(D^{3/2}\log D)=o(D^2).
+\]
+\end{lemma}
+
+\begin{proof}
+Every coefficient index occurring at a pivot is $O_s(D)$ by
+\cref{cor:zero-estimate}.  A residual prime power can occur only if
+\[
+ \ell^{a_{\ell,D}+1}>N^\sharp,
+ \qquad
+ \ell^{a_{\ell,D}+1}=O_s(D).
+\]
+Since $a_{\ell,D}+1\ge2$, this forces $\ell=O_s(\sqrt D)$.  Summing proper
+prime-power excesses gives $O_s(\sqrt D\log D)$ for one pivot and therefore
+$O_s(D^{3/2}\log D)$ over $(s+1)D+O(1)$ pivots.  This includes the finite bad
+primes: the fixed factors $\beta_\ell+t_\ell$ in
+\eqref{eq:bad-small-lattice} clear their model and constant denominators, and
+only the same prime-power excess beyond $L_{N^\sharp}$ remains.  The one omitted Hasse
+power at arithmetically good primes is exactly restored by the deepest-row
+divisibility and creates no additional residual term.
+\end{proof}
+
+\subsection{Large primes on the de Rham torsor}
+
+At primes $\ell>N^\sharp$ use the unmodified source lattice.  By
+\cref{lem:neat-descent}, after pullback to a flat integral torsor chart the
+normalized scalar evaluation has the decomposition
+\begin{equation}\label{eq:torsor-eval}
+ F_\lambda(f)=H_\lambda(f,u)+
+ \sum_{e=1}^sQ_{e,\lambda}(f,u)R_e(f),
+\end{equation}
+with $f$-support $[-C,D+C]$ and fixed fibre degree.  The value of
+$F_\lambda$ is independent of the torsor point because it is the contraction
+of a source with a horizontal section.
+
+Insert \cref{lem:Dwork} into \eqref{eq:torsor-eval}:
+\begin{equation}\label{eq:torsor-Dwork}
+ F_\lambda=H_\lambda^\flat+
+ \sum_{e=1}^s\ell^{-e}Q_{e,\lambda}(f,u)
+ R_e(\varphi_\ell(f)),
+\end{equation}
+where $H_\lambda^\flat$ is integral.  The fibre variables are coefficients;
+no Frobenius action on them is used.
+
+\begin{lemma}[Coefficient-ring Taylor no-backflow]\label{lem:no-backflow}
+Let $A$ be any $\F_\ell$-algebra and
+\[
+ \Gamma(f,z)=\sum_{j=0}^df^jP_j(z),
+ \qquad d<\ell,
+ \qquad P_j(z)\in A[[z]].
+\]
+Suppose $\Gamma(f,f^\ell)\in f^nA[[f]]$ and
+$\Delta(f)\in f^{\ell+1}A[[f]]$.  Then for every $t\ge0$,
+\begin{equation}\label{eq:no-backflow}
+ \Delta(f)^t
+ \left.\partial_z^t\Gamma(f,z)\right|_{z=f^\ell}
+ \in f^{n+t}A[[f]].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $P_j(z)=\sum_rp_{j,r}z^r$.  Since $0\le j<\ell$, the exponent
+$j+\ell r$ uniquely determines $(j,r)$; no cancellation between different
+pairs is possible, even if $A$ has zero divisors.  Thus a nonzero
+$p_{j,r}$ satisfies $j+\ell r\ge n$.  Terms with $r<t$ vanish after $t$
+derivatives.  For $r\ge t$, after differentiating $t$ times and multiplying
+by $\Delta^t$, the corresponding order is at least
+\[
+ j+\ell(r-t)+t(\ell+1)=j+\ell r+t\ge n+t.
+\]
+\end{proof}
+
+\begin{lemma}[Pivot-range truncation]\label{lem:pivot-truncation}
+Let $\ell>N^\sharp$ and let
+\[
+ F_\lambda(f)=c_nf^n+O(f^{n+1}),
+ \qquad c_n\ne0,
+\]
+be a Bost pivot.  Put
+$\widetilde F_\lambda=f^CF_\lambda$ and $\widetilde n=n+C$, where the fixed
+$C$ shifts all multiplier $f$-degrees into $[0,D+2C]$.  For all sufficiently
+large $D$, every coefficient through order $f^{\widetilde n}$ in
+\eqref{eq:torsor-Dwork} is unchanged if each $R_e(z)$ is replaced by its
+truncation $R_{e,<\ell}(z)$ below $z^\ell$.  The coefficients of every
+$R_{e,<\ell}$ are $\ell$-integral.  Consequently, if
+$v_\ell(c_n)<0$, then
+\begin{equation}\label{eq:pivot-pole-bound}
+ 1\le -v_\ell(c_n)\le s.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By \cref{cor:zero-estimate}, $\widetilde n=O_{p,s}(D)$.  Since
+$\ell>N^\sharp=\floor{\xi D}+C_{\mathrm{sh}}$ with $\xi>1$, one has
+$D+2C<\ell$ and $\widetilde n<\ell^2$ for all sufficiently large $D$.
+Consider a monomial $f^jz^r$ in a multiplier times $R_e(z)$.  For a
+nonzero $t$th Taylor term one has $t\le r$, and at
+$z=f^\ell+\ell\Delta_\ell(f)$ its $f$-order is at least
+\[
+ j+\ell(r-t)+t(\ell+1)=j+\ell r+t.
+\]
+If $r\ge\ell$, this is at least $\ell^2$, and hence is strictly beyond the
+pivot order.  Thus terms of $z$-degree at least $\ell$ cannot affect
+$c_n$.  For $r<\ell$, the index $r$ is an $\ell$-adic unit, so the raw-depth
+formula makes the coefficient of $z^r$ in $R_e(z)$ $\ell$-integral.  After
+truncation the only negative power of $\ell$ in
+\eqref{eq:torsor-Dwork} is therefore the explicit factor $\ell^{-e}$, with
+$1\le e\le s$.  This proves \eqref{eq:pivot-pole-bound}.
+\end{proof}
+
+Let $A_\ell$ be the integral coefficient algebra of the chosen flat torsor
+chart and put $A=A_\ell/\ell A_\ell$, a nonzero unital
+$\F_\ell$-algebra.  Let a Bost pivot have the displayed
+expansion.  If $v_\ell(c_n)\ge0$ there is no positive denominator penalty.
+Otherwise put
+\[
+ a=-v_\ell(c_n)>0.
+\]
+By \cref{lem:pivot-truncation}, $1\le a\le s$.  Put
+\[
+ \widetilde F_\lambda=f^CF_\lambda,
+ \qquad
+ \widetilde n=n+C.
+\]
+For $1\le e\le s$ define the shifted truncated product
+\begin{equation}\label{eq:Be-product}
+ B_e(f,u,z)=f^CQ_{e,\lambda}(f,u)R_{e,<\ell}(z)
+ \in A_\ell[f,z].
+\end{equation}
+By \cref{lem:pivot-truncation},
+\[
+ \deg_fB_e\le D+2C<\ell,
+ \qquad
+ \deg_zB_e<\ell,
+ \qquad
+ B_e(f,u,0)=0.
+\]
+Choose coefficientwise representatives
+$B_{e,0},\ldots,B_{e,e-1}\in A_\ell[f,z]$ satisfying
+\begin{equation}\label{eq:B-digit-expansion}
+ B_e\equiv\sum_{\nu=0}^{e-1}\ell^\nu B_{e,\nu}
+ \pmod{\ell^eA_\ell[f,z]},
+\end{equation}
+with the same degree bounds and with $B_{e,\nu}(f,u,0)=0$.  Such digits are
+obtained recursively coefficient by coefficient; flatness makes
+multiplication by $\ell$ injective in $A_\ell$.
+
+For $1\le b\le s$ define in the special-fibre coefficient algebra
+\begin{equation}\label{eq:Gamma-pole-grade}
+ \Gamma_b(f,z)=
+ \sum_{e\ge b}\overline B_{e,e-b}(f,u,z).
+\end{equation}
+Let $\Pi_b(f)$ be the pole-grade-$b$ associated-graded symbol of the shifted
+truncated expression
+\[
+ f^CH_\lambda^\flat+
+ \sum_{e=1}^s\ell^{-e}B_e(f,u,\varphi_\ell(f)).
+\]
+Taylor expansion at
+$\varphi_\ell(f)=f^\ell+\ell\Delta_\ell(f)$ gives the exact identity
+\begin{equation}\label{eq:pole-symbol}
+ \boxed{
+ \Pi_b(f)=\sum_{t=0}^{s-b}
+ \frac{\overline\Delta_\ell(f)^t}{t!}
+ \left.\partial_z^t\Gamma_{b+t}(f,z)\right|_{z=f^\ell}.}
+\end{equation}
+Indeed a digit $B_{e,\nu}$ in the $t$th Taylor term carries the factor
+$\ell^{\nu+t-e}$ and hence has pole grade $b=e-\nu-t$; grouping all terms of
+fixed $b$ gives \eqref{eq:pole-symbol}.  Since $\ell>s$, every $t!$ occurring
+here is a unit.  Notice that digitizing the full product $B_e$, rather than
+$Q_{e,\lambda}$ alone, also records positive $\ell$-adic valuations of the
+integral coefficients of $R_{e,<\ell}$.
+
+\begin{proposition}[Torsor Cartier strictness]\label{prop:Cartier}
+For the actual pole grade $a$, the coefficient of $f^{\widetilde n}$ in
+$\Gamma_a(f,f^\ell)$ is nonzero.  Consequently there exist
+\[
+ -C\le j\le D+C,
+ \qquad r\ge1,
+\]
+such that
+\begin{equation}\label{eq:njr}
+ n=j+\ell r.
+\end{equation}
+Hence the positive denominator penalty satisfies
+\begin{equation}\label{eq:large-local-height}
+ \delta_\ell(\psi_D^{(n)})
+ \le s\,v_\ell
+ \left([\max\{n-D-C,1\},\ldots,n+C]\right)\log\ell.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The shifted scalar series has expansion
+\[
+ \widetilde F_\lambda
+ =c_nf^{\widetilde n}+O(f^{\widetilde n+1}).
+\]
+For every $k<\widetilde n$ its $f^k$-coefficient is zero.  Taking successive
+positive pole-grade symbols of that zero coefficient shows
+\[
+ \Pi_b(f)\in f^{\widetilde n}A[[f]]
+ \qquad(1\le b\le s).
+\]
+We prove by descending induction on $b$ that
+\begin{equation}\label{eq:pole-grade-induction}
+ \Gamma_b(f,f^\ell)\in f^{\widetilde n}A[[f]],
+ \qquad
+ \Pi_b(f)\equiv\Gamma_b(f,f^\ell)
+ \pmod{f^{\widetilde n+1}}.
+\end{equation}
+For $b=s$, \eqref{eq:pole-symbol} has only the term $t=0$, so the assertion
+follows.  Suppose it is known for $b+1,\ldots,s$.  For every $t\ge1$, the
+induction hypothesis gives
+$\Gamma_{b+t}(f,f^\ell)\in f^{\widetilde n}A[[f]]$.  Since
+$\deg_f\Gamma_{b+t}<\ell$, \cref{lem:no-backflow} yields
+\[
+ \frac{\overline\Delta_\ell(f)^t}{t!}
+ \left.\partial_z^t\Gamma_{b+t}(f,z)\right|_{z=f^\ell}
+ \in f^{\widetilde n+t}A[[f]]
+ \subset f^{\widetilde n+1}A[[f]].
+\]
+The $t=0$ term is $\Gamma_b(f,f^\ell)$, proving the congruence in
+\eqref{eq:pole-grade-induction}; because $\Pi_b\in f^{\widetilde n}A[[f]]$,
+it also proves the asserted divisibility of $\Gamma_b$.
+
+At the actual pole grade $a$, the coefficient of $f^{\widetilde n}$ in
+$\Pi_a$ is the reduction of the unit $\ell^ac_n$.  It is a nonzero scalar in
+$\F_\ell$ and remains nonzero in the nonzero unital algebra $A$.  By
+\eqref{eq:pole-grade-induction}, the coefficient of $f^{\widetilde n}$ in
+$\Gamma_a(f,f^\ell)$ is therefore nonzero.  Some monomial contributing to it
+has exponent
+\[
+ \widetilde n=j'+\ell r,
+ \qquad 0\le j'\le D+2C.
+\]
+Every digit $B_{e,\nu}$ has zero $z$-constant term, so $r\ge1$.  Returning to
+the unshifted order and putting $j=j'-C$ gives
+\[
+ n=j+\ell r,
+ \qquad -C\le j\le D+C.
+\]
+The positive integer $n-j=\ell r$ lies in
+$[\max\{n-D-C,1\},n+C]$, so the $\ell$-adic valuation of the lcm of this
+interval is at least one.  Since $a\le s$, this proves
+\eqref{eq:large-local-height}.
+\end{proof}
+
+\begin{remark}[Signed height versus positive penalty]
+Bost's local height is the signed quantity
+$h^B_\ell=-v_\ell(c_n)\log\ell$.  The local Dwork estimates bound
+$\delta_\ell=\max\{0,-v_\ell(c_n)\}\log\ell$, and
+$h^B_\ell\le\delta_\ell$.  Replacing the signed height by this upper bound is
+therefore legitimate.
+\end{remark}
+
+\subsection{The aggregate large-prime sum}
+
+For $m\ge2$ and $1<\xi<m$, define $I^m_\xi(\xi)$ by
+\eqref{eq:I-def-intro}.
+
+\begin{lemma}[CDT prime-window summation]\label{lem:CDT-sum}
+If $V_D$ satisfies \eqref{eq:zero-estimate}, then
+\[
+ \sum_{n\in V_D}\sum_{\ell>\xi D}
+ v_\ell([\max\{n-D,1\},\ldots,n])\log\ell
+ \le I^m_\xi(\xi)D^2+o(D^2).
+\]
+\end{lemma}
+
+\begin{proof}
+This is the one-variable summation in \cite[Section~7.3]{CDT2024}.  A prime
+$\ell=xD$ can contribute only if a pivot lies within one multiplier window of
+a positive multiple of $\ell$.  The distinct pivots are maximally packed in
+an interval of normalized length $m$.  Integrating the resulting packing
+function and partitioning at the points $1+k\xi$ gives
+\eqref{eq:I-def-intro}.
+\end{proof}
+
+\begin{proposition}[Large-prime arithmetic cost]\label{prop:large-cost}
+The total residual positive denominator penalty at primes $\ell>N^\sharp$ is
+\[
+ \mathscr A_D^{\mathrm{large}}
+ \le sI^{s+1}_\xi(\xi)D^2+o(D^2).
+\]
+\end{proposition}
+
+\begin{proof}
+Since $N^\sharp=\xi D+O(1)$, the sum over $\ell>N^\sharp$ is bounded
+by the CDT sum over $\ell>\xi D$, up to a fixed-width boundary error.
+Apply \cref{prop:Cartier,lem:CDT-sum}.  Adding and removing the fixed
+$C$-width changes the prime sum by $O_{p,s}(D\log D)$, because only fixed
+boundary integers are added for each of $O_s(D)$ pivots.
+\end{proof}
+
+\begin{theorem}[Hybrid finite-place theorem]\label{thm:hybrid-local}
+For the hybrid source lattice, the finite-place contributions satisfy
+\[
+ \widehatdeg M_D^{\mathrm{hyb}}
+ =\widehatdeg M_D-S_{p,s}(\xi)D^2+o(D^2),
+\]
+\[
+ \mathscr A_D^{\mathrm{small}}=o(D^2),
+ \qquad
+ \mathscr A_D^{\mathrm{large}}
+ \le sI^{s+1}_\xi(\xi)D^2+o(D^2).
+\]
+\end{theorem}
+
+\begin{proof}
+Combine \cref{prop:small-cost,lem:small-residual,prop:large-cost}.
+\end{proof}
+
+\section{Bost-slopes assembly}\label{sec:bost}
+
+\begin{proposition}[Bost--CDT leading terms]\label{prop:Bost-leading}
+For the unmodified rank-$m$ source,
+\begin{equation}\label{eq:baseline-degree}
+ \widehatdeg M_D=\frac m2\Energy(\boldsymbol\phi)D^2+o(D^2).
+\end{equation}
+For the Bost pivots, the nonarithmetic template terms satisfy
+\begin{equation}\label{eq:height-leading}
+ \sum_{n\in V_D}\sum_vh_v(\psi_D^{(n)})
+ \le\left(-\frac{m^2}{2}\LambdaAH(\boldsymbol\phi)
+ +m\Energy(\boldsymbol\phi)\right)D^2
+ +\mathscr A_D+o(D^2).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For the split scalar source, the scalar source-degree asymptotic is
+\cite[(7.3.7)]{CDT2024}.  In the adelic normalization,
+\cite[Section~2.3 and the proof of Theorem~2.6]{CDT2025} derives the same
+leading term from the arithmetic Hilbert--Samuel theorem together with the
+Bost--Charles overflow identities
+\cite[Theorem~5.4.1 and Proposition~5.4.2]{BostCharles2022}.
+The fixed-bundle comparison \cref{lem:fixed-bundle} therefore gives
+\eqref{eq:baseline-degree}.
+
+For a pivot of order $n$, the constituent CDT estimates have nonarithmetic
+part
+\[
+ -n\LambdaAH(\boldsymbol\phi)+D\Energy(\boldsymbol\phi),
+\]
+while the finite coefficient-arithmetic term is the quantity denoted
+$\mathscr A_D$ here; see \cite[(7.3.14)--(7.3.15)]{CDT2024}.  There are
+$mD+O(1)$ distinct nonnegative pivots and, by
+\cref{cor:zero-estimate}, each is $O(D)$.  Hence
+\[
+ \sum_{n\in V_D}n\ge\binom{\#V_D}{2}
+ =\frac12m^2D^2+o(D^2),
+\]
+and the uniform lower-order terms sum to $o(D^2)$.  Summing the CDT estimates
+and retaining $\mathscr A_D$ separately gives \eqref{eq:height-leading}; this
+is the leading-coefficient passage in
+\cite[(7.3.14)--(7.3.16)]{CDT2024}, with the adelic normalization above.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:hybrid-holonomy}]
+Bost's slopes inequality, in the form of
+\cite[(7.3.16)]{CDT2024}, gives
+\[
+ \widehatdeg M_D^{\mathrm{hyb}}
+ \le\sum_{n\in V_D}\sum_vh_v(\psi_D^{(n)}).
+\]
+By \cref{thm:hybrid-local,prop:Bost-leading},
+\[
+ \frac m2\Energy-S_{p,s}(\xi)
+ \le-\frac{m^2}{2}\LambdaAH+m\Energy
+ +sI^{s+1}_\xi(\xi).
+\]
+Rearranging and using $m=s+1$ gives
+\[
+ m\left(\LambdaAH-
+ \frac{2}{m^2}(S_{p,s}(\xi)+sI^{s+1}_\xi(\xi))\right)
+ \le\Energy,
+\]
+which is \eqref{eq:tau-main}.
+\end{proof}
+
+\section{Uniform analytic continuation}\label{sec:continuation}
+
+Put
+\[
+ a_p=\frac{12}{p-1},
+ \qquad
+ R_p=p^{a_p}.
+\]
+
+\begin{theorem}[Uniform continuation]\label{thm:continuation}
+For $p\in\{2,3,5,7\}$ and odd $s\ge3$, the distinguished form
+$K_{p,s,\zeta_p(s)/2}$ extends as a rigid analytic section of
+$\omega^{1-s}$ to
+\[
+ U_p=\{\abs{f_p}_p<R_p\}.
+\]
+The full Eisenstein--Eichler horizontal leaf extends meromorphically over the
+same wide-open.  At every finite place $\ell\ne p$, under
+$\zeta_p(s)\in\Q$, it is meromorphic on $\abs{f_p}_\ell<1$.  For every
+$Y>0$, its complex pullback under $z\mapsto f_p(e^{-2\pi Y}z)$ is
+meromorphic near the closed unit disc.
+\end{theorem}
+
+\begin{proof}
+Input (E1) makes $K$ overconvergent and \cref{lem:Up} gives $U_p$-eigenvalue
+one.  The weight $1-s$ is an integer, and Buzzard's theorem imposes no
+nonnegativity condition on that integer weight.  Pull to one fixed neat tame
+level, apply \cite[Theorem~5.2(2)]{Buzzard2003}, and descend by uniqueness of
+analytic continuation.  Thus $K$ extends to the wide-open $W_0(p)$ containing the
+cusp $\infty$.
+
+For $p=2,3$, Calegari identifies the two ordinary components and the
+intervening supersingular region in the coordinate $f_p$, giving
+$W_0(p)=\{\abs{f_p}_p<R_p\}$; see \cite[Section~3]{Calegari2005}.  We spell
+out the corresponding calculation for $p=5,7$.  Put $t_p=f_p^{-1}$.
+For $p=5$, Kilford's equation \cite[(3)]{Kilford2008} is
+\[
+ j=\frac{(t_5^2+250t_5+3125)^3}{t_5^5}.
+\]
+Writing $v=v_5(t_5)$, its Newton-polygon valuation gives
+\[
+ v_5(j)=v\quad(0<v<5/2),
+ \qquad
+ v_5(j)=15-5v\quad(5/2<v<3).
+\]
+Since $j=0$ is the unique supersingular $j$-invariant in characteristic $5$,
+the supersingular annulus is $0<v_5(t_5)<3$.  The cusp $\infty$ lies on the
+side where $t_5$ has a pole; hence
+\[
+ W_0(5)=\{v_5(t_5)<3\}=\{\abs{f_5}_5<5^3\}.
+\]
+For $p=7$, Kilford--McMurdy give $w_7^*t_7=49/t_7$ and, from their explicit
+$j$-models, identify the unique supersingular annulus as
+$0<v_7(t_7)<2$; see \cite[Equations~(1)--(4) and Section~2]{KilfordMcMurdy2012}.
+Thus
+\[
+ W_0(7)=\{v_7(t_7)<2\}=\{\abs{f_7}_7<7^2\}.
+\]
+
+The Gauss--Manin connection is algebraic on the de Rham frame torsor, so
+applying it finitely many times does not shrink the base domain.  This extends
+the BGG leaf.  At $\ell\ne p$, the raw coefficients have at worst logarithmic
+$\ell$-adic denominator growth and hence radius at least one; the integral
+inverse coordinate transfers this to the $f$-disc.  Over $\C$, the divisor-sum
+coefficients have subexponential growth, giving the final claim.
+\end{proof}
+
+\begin{remark}[Strict exhaustion]
+The $p$-adic continuation domain is open.  In the holonomy argument one uses
+closed affinoids of radius $p^{a_p-\varepsilon}$ and lets
+$\varepsilon\downarrow0$.  No boundary convergence is assumed.
+\end{remark}
+
+\section{Exact modular collision energy}\label{sec:collision}
+
+For $0<Y<1/p$, define
+\[
+ \phi_{p,Y}(z)=f_p(e^{-2\pi Y}z)
+\]
+and $C_p(Y)$ by \eqref{eq:C-intro}.
+
+\begin{proposition}[Modular Jensen formula]\label{prop:Jensen}
+One has
+\begin{equation}\label{eq:Jensen}
+ \iint_{\T^2}
+ \log\abs{\phi_{p,Y}(z)-\phi_{p,Y}(w)}\,\dd m(z)\dd m(w)
+ =-2\pi Y+C_p(Y).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Fix $\tau_x=x+iY$.  Since $f_p$ is a Hauptmodul, the nonidentity zeros of
+$f_p(q')-f_p(e^{2\pi i\tau_x})$ are parametrized by cosets
+$\Gamma_\infty\backslash\Gamma_0(p)$, equivalently primitive bottom rows
+$(c,d)$ with $c>0$ and $p\mid c$.  For
+$\gamma=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$,
+\[
+ \Im(\gamma\tau_x)=
+ \frac{Y}{(cx+d)^2+c^2Y^2}.
+\]
+Jensen's formula contributes
+$2\pi(\Im(\gamma\tau_x)-Y)_+$.  For a fixed $c$, unfold the sum over
+primitive $d$:
+\[
+ \sum_{\substack{d\in\Z\\(c,d)=1}}
+ \int_0^1F(cx+d)\,\dd x
+ =\frac{\varphi(c)}{c}\int_\R F(u)\,\dd u.
+\]
+The positive part is nonempty exactly when $cY<1$.  Evaluating the elementary
+integral gives
+\[
+ \frac{4\pi\varphi(c)}{c^2}
+ \left(\arccos(cY)-cY\sqrt{1-c^2Y^2}\right).
+\]
+Only finitely many $c$ occur.  The eta-product factors in $f_p$ have
+logarithmic mean zero, while the leading $q$ contributes $-2\pi Y$.
+Elliptic stabilizers occur only on a measure-zero set and are accounted for by
+the standard orbifold multiplicity.
+\end{proof}
+
+At the distinguished $p$-adic place, strict exhaustion of the radius $R_p$
+gives a scaling width $12\log p/(p-1)$.  Combining it with
+\cref{prop:Jensen} yields
+\begin{equation}\label{eq:Lambda-energy}
+ \Lambda_p(Y)=\frac{12\log p}{p-1}-2\pi Y,
+ \qquad
+ \Energy_p(Y)=\Lambda_p(Y)+C_p(Y).
+\end{equation}
+
+\section{The twenty-two applications}\label{sec:applications}
+
+For each target we use exact rational witnesses $\xi,Y$ listed in
+\cref{tab:22}.  Every witness satisfies
+\[
+ 1<\xi<s+1,
+ \qquad c_p\xi<1,
+ \qquad0<Y<1/p.
+\]
+The value of $I^{s+1}_\xi(\xi)$ and hence $\tau_{p,s}(\xi)$ is rational.
+The collision sum has exactly the finitely many active layers
+$c=p,2p,\ldots$ with $cY<1$.
+
+\begingroup\small
+\begin{longtable}{@{}rrrrrl@{}}
+\caption{Exact rational witnesses and independently certified lower margins.}
+\label{tab:22}\\
+\toprule
+$p$&$s$&$\xi$&$\tau_{p,s}(\xi)$&$Y$& certified lower bound\\
+\midrule
+\endfirsthead
+\toprule
+$p$&$s$&$\xi$&$\tau_{p,s}(\xi)$&$Y$& certified lower bound\\
+\midrule
+\endhead
+2 & 3 & $22/19$ & $1321/608$ & $16/79$ & $9.745786633966$ \\
+2 & 5 & $29/26$ & $18445/5616$ & $6/49$ & $13.454727090366$ \\
+2 & 7 & $110/101$ & $105585/25856$ & $1/11$ & $15.805524331097$ \\
+2 & 9 & $89/83$ & $10906993/2324000$ & $3/43$ & $17.190005995811$ \\
+2 & 11 & $262/247$ & $464385991/89631360$ & $3/52$ & $17.790824360622$ \\
+2 & 13 & $181/172$ & $144989487/25958240$ & $2/41$ & $17.737379764768$ \\
+2 & 15 & $478/457$ & $16666007411/2810615808$ & $3/71$ & $17.124944575766$ \\
+2 & 17 & $305/293$ & $12175769323/1954839744$ & $3/80$ & $16.023242852853$ \\
+2 & 19 & $758/731$ & $11693630797/1801184000$ & $1/30$ & $14.484310655378$ \\
+2 & 21 & $461/446$ & $536638388131/79764338368$ & $1/33$ & $12.553794492186$ \\
+2 & 23 & $1102/1069$ & $22108077629089/3185347156992$ & $1/36$ & $10.264641765760$ \\
+2 & 25 & $649/631$ & $21299386717285/2985462031552$ & $1/39$ & $7.646580292916$ \\
+2 & 27 & $1510/1471$ & $456079886220493/62372115303680$ & $1/42$ & $4.724811329943$ \\
+2 & 29 & $869/848$ & $14321093408042087/1915475381820000$ & $1/46$ & $1.522247623229$ \\
+3 & 3 & $33/29$ & $2029/928$ & $4/27$ & $6.200294149415$ \\
+3 & 5 & $87/79$ & $112477/34128$ & $7/73$ & $6.941905556192$ \\
+3 & 7 & $55/51$ & $53435/13056$ & $1/15$ & $6.163732078651$ \\
+3 & 9 & $267/251$ & $33037241/7028000$ & $1/19$ & $4.332047506141$ \\
+3 & 11 & $393/373$ & $702154669/135354240$ & $3/70$ & $1.679644254174$ \\
+5 & 3 & $11/10$ & $177/80$ & $7/71$ & $2.515479614080$ \\
+5 & 5 & $29/27$ & $12899/3888$ & $1/16$ & $0.131799356827$ \\
+7 & 3 & $33/31$ & $2219/992$ & $1/14$ & $0.436413057785$ \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begin{proof}[Proof of \cref{thm:main}]
+Fix one row of \cref{tab:22} and suppose $\zeta_p(s)\in\Q$.  By
+\cref{thm:continuation,prop:Jensen}, the templates have width and energy
+\eqref{eq:Lambda-energy}.  Apply \cref{thm:hybrid-holonomy} with the displayed
+$\xi$.  It forces
+\[
+ (s+1)(\Lambda_p(Y)-\tau_{p,s}(\xi))
+ \le\Lambda_p(Y)+C_p(Y),
+\]
+or equivalently
+\[
+ \mathfrak M_{p,s}(\xi,Y)
+ =s\Lambda_p(Y)-(s+1)\tau_{p,s}(\xi)-C_p(Y)\le0.
+\]
+The interval certificate gives a strictly positive lower bound in every row,
+a contradiction.
+\end{proof}
+
+\section{Logical scope and dependency audit}\label{sec:audit}
+
+The proof is intentionally organized so that every delicate interface can be
+checked independently.
+
+\begingroup\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.35\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}@{}}
+\toprule
+Gate & Source & Use in the proof\\
+\midrule
+Calegari Eisenstein family & \cite[Theorem~2.3 and Lemma~2.4]{Calegari2005}
+& Identifies $K_{p,s}$ and gives overconvergence.\\
+Buzzard continuation & \cite[Theorem~5.2]{Buzzard2003}
+& Extends the finite-slope form to $W_0(p)$.\\
+Hasse invariant & \cite{Katz1973} plus classical Eisenstein congruences
+& Algebraizes $x_\sigma$ modulo an auxiliary prime and bounds its degree.\\
+De Rham frame torsor & \cite[Propositions~A.14--A.15]{GPRJ2025}
+& Supplies the neat-level torsor, filtration, weight decomposition, and
+Gauss--Manin structure.  Descent and spreading out are internal.\\
+Bost/CDT & \cite{Bost2001};
+\cite[Theorem~5.4.1 and Proposition~5.4.2]{BostCharles2022};
+\cite[Theorem~3.2.13 and (7.3.7), (7.3.14)--(7.3.16)]{CDT2024};
+\cite[Theorem~2.6]{CDT2025}
+& Supplies the slopes inequality, overflow/source identities, scalar zero
+estimate, pivot-height bounds, adelic normalization, and prime-window
+summation; \cref{lem:fixed-bundle} proves the fixed-bundle norm comparison.\\
+BGG extension & \cite[Proposition~2.4.3]{RodriguezCamargo2023};
+\cite[Proposition~2.4.1 and Remark~2.4.2]{Urban2013}; internal
+\cref{lem:BGG,prop:split-extension}
+& Fixes the exact global BGG--Bol normalization and constructs the algebraic
+Eisenstein--Eichler connection.\\
+Small-prime arithmetic & Internal,
+\cref{prop:single-unipotent,thm:genuine-Hasse,lem:actual-deepest-row,prop:small-cost}
+& Proves the normalized deepest-row degree bound, genuine-source Hasse
+rank--nullity saving, fixed-width cutoff control, and determinant cost.\\
+Large-prime arithmetic & Internal,
+\cref{lem:no-backflow,lem:pivot-truncation,prop:Cartier}
+& Truncates before taking pole grades, digitizes each full truncated product,
+and gives the torsor-valued Cartier window without scalarization.\\
+Collision energy & Internal, \cref{prop:Jensen}
+& Gives the exact complex Bost--Charles energy.\\
+Numerics & Appendix~\ref{app:certificate}
+& Gives exact rational witnesses and outward interval enclosures.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The attribution boundary is as follows.  GPRJ supplies the torsor and its
+Gauss--Manin structures at neat level; \cref{lem:neat-descent} proves the
+descent and integral spreading used here.  CDT supplies scalar source and
+pivot estimates; \cref{lem:fixed-bundle} proves that passage to the fixed
+vector-bundle source changes only $o(D^2)$.  Katz supplies the Hasse invariant
+and $q$-expansion principle; \cref{prop:single-unipotent} proves the
+single-action degree bound for the genuine deepest multiplier, and the
+codimension estimate is the internal rank--nullity argument of
+\cref{thm:genuine-Hasse}.
+
+\begin{warning}[Obsolete proof routes]
+The manuscript does not inherit the global scalar-gauge assertion from older
+prime-window drafts.  A nonzero-weight Tate trivialization transforms by a
+nontrivial power of $c\tau+d$ and therefore cannot equal a rational function
+of the Hauptmodul.  The Rees--Bol matrix controls the unipotent coordinate,
+not the diagonal torus.  This is why the large-prime proof stays on the frame
+torsor and the small-prime proof uses only a mod-$\ell$ Hasse comparison.
+\end{warning}
+
+\appendix
+
+\section{Independent rational fixed-point interval certificate}
+\label{app:certificate}
+
+The supplementary program
+\path{hybrid_rational_interval_certificate.py} reconstructs every numerical
+quantity independently from the formulas of the paper.  It uses only Python's
+standard-library arbitrary-precision integers and \texttt{Fraction}; no binary
+floating point or external interval package enters the certification.
+All algebraic quantities are exact.  Real intervals are represented by integer
+endpoints at the fixed scale $10^{90}$, and every arithmetic operation is
+rounded outward.
+
+The transcendental constants are enclosed from elementary convergent series
+with explicit remainder bounds:
+\[
+ \pi=16\arctan\frac15-4\arctan\frac1{239},
+ \qquad
+ \log p=2\operatorname{arctanh}\frac{p-1}{p+1},
+\]
+\[
+ \arctan z=\sum_{k\ge0}\frac{(-1)^kz^{2k+1}}{2k+1},
+ \qquad
+ \arccos x=2\arctan\sqrt{\frac{1-x}{1+x}}.
+\]
+The alternating arctangent remainder is bounded by the first omitted term;
+the positive arctanh tail is bounded by a geometric series.  Square roots of
+rationals are enclosed by exact integer square root at scale $10^{90}$.
+Thus every printed interval follows from integer inequalities that can be
+checked independently of a transcendental-function library.
+
+For each pair $(p,s)$ the script computes
+\[
+ \xi=\frac{12(s(s+1)-1)}{12s^2+(s-1)(p+1)},
+\]
+then evaluates $K_m(\xi)$, $I^m_\xi(\xi)$, $S_{p,s}(\xi)$, and
+$\tau_{p,s}(\xi)$ exactly.  The active collision layers are selected by the
+exact rational test $cY<1$.  The program asserts that the lower endpoint of
+every one of the twenty-two final intervals is positive.  Its smallest case is
+\[
+\begin{aligned}
+ \mathfrak M_{5,5}\left(\frac{29}{27},\frac1{16}\right)
+ \in [&0.131799356827016832557664457131479890735826671587851068262655,\\
+      &0.131799356827016832557664457131479890735826671587851068262656].
+\end{aligned}
+\]
+
+For reproducibility, the accompanying manifest \path{hybrid_rational_interval_certificate_sha256.txt} records the SHA-256 hashes
+of the certificate script and its output:
+\begin{verbatim}
+1408c9092d0c34917253c8f520db56853112c58640d15c98d58b76a61a0478f5
+  hybrid_rational_interval_certificate.py
+9e1d8f74eb198c7e7b0c7420a1e8021d7bad4d2bc8014cc939b6b353111c0da0
+  hybrid_rational_interval_certificate_output.txt
+\end{verbatim}
+
+\section{Explicit prime-window function}\label{app:window}
+
+For completeness, let $m\ge2$, $1<\xi<m$, and
+$K=\floor{(m-1)/\xi}$.  The normalized pivot interval has length $m$ and a
+large prime $\ell=xD$ contributes when a pivot lies in a degree-$D$ interval
+ending at a positive multiple of $\ell$.  Maximally packing distinct pivots
+and integrating the resulting triangular boundary term gives
+\[
+ I^m_\xi(\xi)=
+ \left(m-\frac12\right)H_K-K\xi
+ +\frac{(m-(K+1)\xi)_+^2}{2(K+1)}.
+\]
+This is the specialization of the CDT summation used in
+\cref{lem:CDT-sum}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Bost2001}
+J.-B.~Bost,
+\newblock Algebraic leaves of algebraic foliations over number fields,
+\newblock \emph{Publ. Math. Inst. Hautes \`Etudes Sci.} \textbf{93} (2001),
+161--221.
+
+\bibitem{BostCharles2022}
+J.-B.~Bost and F.~Charles,
+\newblock \emph{Quasi-projective and formal-analytic arithmetic surfaces},
+\newblock Annals of Mathematics Studies \textbf{224}, Princeton University
+Press, Princeton, NJ, 2026; arXiv:2206.14242.
+
+\bibitem{Buzzard2003}
+K.~Buzzard,
+\newblock Analytic continuation of overconvergent eigenforms,
+\newblock \emph{J. Amer. Math. Soc.} \textbf{16} (2003), 29--55;
+\newblock doi:10.1090/S0894-0347-02-00405-8.
+
+\bibitem{Calegari2005}
+F.~Calegari,
+\newblock Irrationality of certain $p$-adic periods for small $p$,
+\newblock \emph{Int. Math. Res. Not.} 2005, no.~20, 1235--1249;
+\newblock doi:10.1155/IMRN.2005.1235.
+
+\bibitem{CDT2024}
+F.~Calegari, V.~Dimitrov and Y.~Tang,
+\newblock The linear independence of $1$, $\zeta(2)$, and
+$L(2,\chi_{-3})$,
+\newblock arXiv:2408.15403v2 (2024).
+
+\bibitem{CDT2025}
+F.~Calegari, V.~Dimitrov and Y.~Tang,
+\newblock Arithmetic holonomy bounds and effective Diophantine approximation,
+\newblock in \emph{Proceedings of the International Congress of
+Mathematicians 2026}, vol.~3, SIAM, 2026, pp.~356--376;
+\newblock doi:10.1137/25M1806776; arXiv:2510.04156.
+
+\bibitem{GPRJ2025}
+A.~Graham, V.~Pilloni and J.~Rodrigues Jacinto,
+\newblock $p$-adic interpolation of Gauss--Manin connections on nearly
+overconvergent modular forms and $p$-adic $L$-functions,
+\newblock \emph{Compos. Math.} \textbf{161} (2025), 2380--2441;
+\newblock doi:10.1112/S0010437X25102479.
+
+\bibitem{Katz1973}
+N.~M.~Katz,
+\newblock $p$-adic properties of modular schemes and modular forms,
+\newblock in \emph{Modular Functions of One Variable III},
+Lecture Notes in Math. \textbf{350}, Springer, 1973, pp.~69--190.
+
+\bibitem{Kilford2008}
+L.~J.~P.~Kilford,
+\newblock On the slopes of the $U_5$ operator acting on overconvergent modular forms,
+\newblock \emph{J. Th\'eor. Nombres Bordeaux} \textbf{20} (2008), no.~1,
+165--182; doi:10.5802/jtnb.620.
+
+\bibitem{KilfordMcMurdy2012}
+L.~J.~P.~Kilford and K.~McMurdy,
+\newblock Slopes of the $U_7$ operator acting on a space of overconvergent modular forms,
+\newblock \emph{LMS J. Comput. Math.} \textbf{15} (2012), 113--139;
+\newblock doi:10.1112/S1461157012000095.
+
+\bibitem{Lai2025}
+L.~Lai,
+\newblock On the irrationality of certain $2$-adic zeta values,
+\newblock \emph{Int. J. Number Theory} \textbf{21} (2025), no.~1, 207--235;
+\newblock doi:10.1142/S1793042125500113.
+
+\bibitem{LaiLupuSprang2025}
+L.~Lai, C.~Lupu and J.~Sprang,
+\newblock On the irrationality of certain $p$-adic zeta values,
+\newblock \emph{Res. Math. Sci.} \textbf{12} (2025), article~77;
+\newblock doi:10.1007/s40687-025-00559-x; arXiv:2505.23088.
+
+\bibitem{LaiSprang2025}
+L.~Lai and J.~Sprang,
+\newblock Many $p$-adic odd zeta values are irrational,
+\newblock \emph{Michigan Math. J.}, advance publication (2026), 1--36;
+\newblock doi:10.1307/mmj/20236490; arXiv:2306.10393v2.
+
+\bibitem{RodriguezCamargo2023}
+J.~E.~Rodr\'iguez Camargo,
+\newblock $p$-adic Eichler--Shimura maps for the modular curve,
+\newblock \emph{Compos. Math.} \textbf{159} (2023), no.~6, 1214--1249;
+\newblock doi:10.1112/S0010437X23007182; arXiv:2102.13099.
+
+\bibitem{Urban2013}
+E.~Urban,
+\newblock Nearly overconvergent modular forms,
+\newblock in \emph{Iwasawa Theory 2012}, Contributions in Mathematical and
+Computational Sciences \textbf{7}, Springer, 2014, pp.~401--441;
+\newblock doi:10.1007/978-3-642-55245-8\_14.
+
+\end{thebibliography}
+
+\end{document}
